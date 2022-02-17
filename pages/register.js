@@ -1,9 +1,7 @@
 import {useContext, useRef, useState} from "react";
-import firebase from "firebase";
 import { auth } from "../lib/firebase";
 import toast from "react-hot-toast";
 import {UserContext} from "../lib/context";
-import {NextResponse} from "next/server";
 import {useRouter} from "next/router";
 
 export default function RegisterPage({ }) {

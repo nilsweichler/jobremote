@@ -1,9 +1,8 @@
-import { auth, googleAuthProvider, EmailAuthProvider } from "../lib/firebase";
+import { auth, googleAuthProvider } from "../lib/firebase";
 import {useContext, useRef, useState} from "react";
 import toast from "react-hot-toast";
 import Link from 'next/link'
 import {UserContext} from "../lib/context";
-import {NextResponse} from "next/server";
 import {useRouter} from "next/router";
 
 export default function LoginPage(props) {
@@ -50,6 +49,7 @@ function SignInWithUserAndPass(e) {
         <input type="email" placeholder="E-Mail" ref={email}></input>
         <input type="password" placeholder="Passwort" ref={password}></input>
         <button disabled={loading}>Login</button>
+        <Link href="/resetpw">Passwort vergessen</Link>
     </form>
   );
 }
