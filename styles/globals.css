@@ -124,6 +124,16 @@ code {
   padding: 0;
 }
 
+.btn-google {
+  background-color: #fff;
+  color: black;
+}
+
+.btn-google img {
+  max-width: 25px;
+  margin-right: 10px;
+}
+
 /* Cards */
 
 .card {

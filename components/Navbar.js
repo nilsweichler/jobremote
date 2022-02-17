@@ -1,9 +1,19 @@
 import Link from 'next/link';
+import {useContext} from "react";
+import {UserContext} from "../lib/context";
+import {auth} from "../lib/firebase";
+import {useRouter} from "next/router";
 
 // Top navbar
 export default function Navbar() {
-  const user = null;
-  const company = null;
+  const {user, company} = useContext(UserContext)
+
+  const router = useRouter();
+
+  const signOut =  () => {
+    auth.signOut();
+    router.push('/');
+  }
 
   return (
     <nav className="navbar">
@@ -26,6 +36,9 @@ export default function Navbar() {
               <Link href={`/${company}`}>
                 <img src={user?.photoURL} />
               </Link>
+            </li>
+            <li>
+              <button onClick={signOut} className="btn-blue">Ausloggen</button>
             </li>
           </>
         )}

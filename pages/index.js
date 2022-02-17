@@ -9,7 +9,7 @@ import toast from 'react-hot-toast'
 export default function Home() {
   return (
     <div>
-      <button onClick={() => toast.success('Toast Works!')}>
+      <button onClick={() => toast.error('Toast Works!')}>
         Press Me!
       </button>
     </div>
