@@ -10,6 +10,8 @@ export default function LoginPage(props) {
 
   return (
     <main>
+        <div className="loginWrapper">
+            <h1>Login</h1>
       {user ? 
         !company ? <CompanyForm /> : <SignOutButton /> 
         : 
@@ -20,7 +22,8 @@ export default function LoginPage(props) {
       :
       <SignInGoogleButton/>
       }
-      <Link href="/register">Registrieren</Link>
+      <Link href="/register">Noch kein Account? Registrieren</Link>
+        </div>
     </main>
   )
 }
@@ -48,8 +51,8 @@ function SignInWithUserAndPass(e) {
     <form onSubmit={SignInWithData}>
         <input type="email" placeholder="E-Mail" ref={email}></input>
         <input type="password" placeholder="Passwort" ref={password}></input>
-        <button disabled={loading}>Login</button>
-        <Link href="/resetpw">Passwort vergessen</Link>
+        <button className="btn-login" disabled={loading}>Login</button>
+        <Link href="/resetpw">Passwort vergessen?</Link>
     </form>
   );
 }

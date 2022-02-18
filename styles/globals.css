@@ -130,6 +130,12 @@ code {
   padding: 0;
 }
 
+.btn-login {
+  background-color: var(--color-blue);
+  color: white;
+  width: 100%;
+}
+
 .btn-google {
   background-color: #fff;
   color: black;
@@ -165,6 +171,33 @@ code {
 .card-info {
   color: white;
   background: var(--color-blue);
+}
+
+/* Login/Register forgotten PW */
+.loginWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 550px;
+  background-color: #747AA0;
+  padding: 30px 60px;
+  border-radius: 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.loginWrapper form input {
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+.loginWrapper button {
+  text-align: center;
+  margin-bottom: 10px;
 }
 
 /* Loader */

@@ -5,8 +5,11 @@ import toast from "react-hot-toast";
 export default function RestPasswordPage({ }) {
   return (
       <main>
+          <div className="loginWrapper">
+              <h1>Passwort vergessen</h1>
         <ResetPassword>
         </ResetPassword>
+          </div>
       </main>
   )
 }
@@ -31,7 +34,7 @@ function ResetPassword(e) {
     return (
     <form onSubmit={resetpw}>
     <input type="email" placeholder="E-Mail" ref={email}></input>
-    <button disabled={loading}>Password zurücksetzen</button>
+    <button className="btn-login" disabled={loading}>Password zurücksetzen</button>
 </form>
 );
 }

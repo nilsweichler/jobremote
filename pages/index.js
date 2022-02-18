@@ -8,10 +8,10 @@ import toast from 'react-hot-toast'
 
 export default function Home() {
   return (
-    <div>
+    <main>
       <button onClick={() => toast.error('Toast Works!')}>
         Press Me!
       </button>
-    </div>
+    </main>
   )
 }
