@@ -33,12 +33,12 @@ export default function Navbar() {
               </Link>
             </li>
             <li>
-              <Link href={`/${company}`}>
-                <img src={user?.photoURL} />
-              </Link>
+              <button onClick={signOut} className="btn-blue">Ausloggen</button>
             </li>
             <li>
-              <button onClick={signOut} className="btn-blue">Ausloggen</button>
+              <Link href={`/${company.toLowerCase()}`}>
+                <img className="avatar" src={user?.photoURL} />
+              </Link>
             </li>
           </>
         )}

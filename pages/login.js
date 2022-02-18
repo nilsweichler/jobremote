@@ -55,8 +55,12 @@ function SignInWithUserAndPass(e) {
 }
 //Sign in with Google Button
 function SignInGoogleButton() {
+    const router = useRouter();
+
   const signInWithGoogle = async () => {
-    await auth.signInWithPopup(googleAuthProvider);
+    await auth.signInWithPopup(googleAuthProvider).then(() => {
+        router.push('admin');
+    })
   };
 
   return (
