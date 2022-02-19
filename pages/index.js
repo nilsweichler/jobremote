@@ -10,7 +10,9 @@ export default function Home() {
               <p>Suchen Sie nach Hunderten von Jobs und finden Sie <br/>
                   einen Job, der zu Ihnen passt! <br/>
                   Oder erstellen Sie einen Job GRATIS.</p>
-              <button className={styles.heroButton}>Poste einen Job</button>
+              <Link href="/admin">
+                <button className={styles.heroButton}>Poste einen Job</button>
+              </Link>
           </div>
       </section>
   )
