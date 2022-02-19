@@ -1,9 +1,11 @@
 import {useContext, useRef, useState} from "react";
-import { auth } from "../lib/firebase";
+import {auth, firestore} from "../lib/firebase";
 import toast from "react-hot-toast";
 import {UserContext} from "../lib/context";
 import {useRouter} from "next/router";
 import Link from "next/link";
+import debounce from "lodash.debounce";
+import {CompanyForm} from "./login";
 
 export default function RegisterPage({ }) {
     const {user, company} = useContext(UserContext)
@@ -12,7 +14,7 @@ export default function RegisterPage({ }) {
     <main>
         <div className="loginWrapper">
             <h1>Registrieren</h1>
-      <RegisterWithUserAndPass></RegisterWithUserAndPass>
+            {user && !company ? <CompanyForm/> : <RegisterWithUserAndPass/> }
         </div>
     </main>
   )
@@ -37,7 +39,6 @@ function RegisterWithUserAndPass(e) {
             try {
                 setLoading(true);
                 await auth.createUserWithEmailAndPassword(email.current.value, password.current.value);
-                await router.push('admin');
             } catch {
                 toast.error('Failed to create an account!')
             }

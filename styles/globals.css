@@ -136,6 +136,10 @@ code {
   width: 100%;
 }
 
+.btn-login:disabled {
+  background-color: darkgray;
+}
+
 .btn-google {
   background-color: #fff;
   color: black;

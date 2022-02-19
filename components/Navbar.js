@@ -3,6 +3,7 @@ import {useContext} from "react";
 import {UserContext} from "../lib/context";
 import {auth} from "../lib/firebase";
 import {useRouter} from "next/router";
+import slugify from "slugify";
 
 // Top navbar
 export default function Navbar() {
@@ -36,7 +37,7 @@ export default function Navbar() {
               <button onClick={signOut} className="btn-blue">Ausloggen</button>
             </li>
             <li>
-              <Link href={`/${company.toLowerCase()}`}>
+              <Link href={`/${slugify(company.toLowerCase())}`}>
                 <img className="avatar" src={user?.photoURL} />
               </Link>
             </li>
