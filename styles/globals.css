@@ -8,6 +8,7 @@
   --color-blue: #503AE2;
   --color-red: #FF8EA1;
   --color-green: #3bdf72;
+  --color-blue-gray: #747AA0;
   --color-dark: #191D38;
 }
 html,
@@ -160,7 +161,7 @@ code {
 .card {
   padding: 2rem;
   margin: 1rem 0;
-  background-color: white;
+  background-color: var(--color-blue-gray);
   border: 1px solid var(--color-gray);
   border-radius: 8px;
 }
