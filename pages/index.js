@@ -1,5 +1,4 @@
 import styles from '../styles/Home.module.css'
-import Loader from '../components/loader'
 import Link from 'next/link';
 
 
