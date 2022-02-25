@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import slugify from "slugify";
 
 export default function CompanyFeed({ posts, admin }) {
     return posts ? posts.map((post) => <PostItem post={post} key={post.slug} admin={admin} />) : null;
@@ -11,13 +12,13 @@ function PostItem({ post, admin = false }) {
 
     return (
         <div className="card">
-            <Link href={`/${post.company}`}>
+            <Link href={`/${slugify(post.company.toLowerCase())}`}>
                 <a>
-                    <strong>By @{post.company}</strong>
+                    <strong>By @{slugify(post.company)}</strong>
                 </a>
             </Link>
 
-            <Link href={`/${post.company}/${post.slug}`}>
+            <Link href={`/${slugify(post.company.toLowerCase())}/${post.slug}`}>
                 <h2>
                     <a>{post.title}</a>
                 </h2>
