@@ -1,11 +1,19 @@
 import { getUserWithCompany, postToJSON } from '../../lib/firebase';
 import CompanyProfile from '../../components/CompanyProfile';
 import CompanyFeed from '../../components/CompanyFeed';
+import Metatags from "../../components/Metatags";
 
 export async function getServerSideProps({ query }) {
     const { company } = query;
 
     const userDoc = await getUserWithCompany(company);
+
+    // If no user, short circuit to 404 page
+    if (!userDoc) {
+        return {
+            notFound: true,
+        };
+    }
 
     // JSON serializable data
     let user = null;
@@ -30,6 +38,7 @@ export async function getServerSideProps({ query }) {
 export default function CompanyPage({ user, posts }) {
   return (
     <main>
+        <Metatags title={user.company + " Profile Page"} />
       <CompanyProfile user={user}></CompanyProfile>
         <CompanyFeed posts={posts}></CompanyFeed>
     </main>

@@ -55,7 +55,8 @@ function SignInGoogleButton() {
     const router = useRouter();
 
   const signInWithGoogle = async () => {
-    await auth.signInWithPopup(googleAuthProvider)
+    await auth.signInWithPopup(googleAuthProvider);
+    await router.push('/admin');
   };
 
   return (
