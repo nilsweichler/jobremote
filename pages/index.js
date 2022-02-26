@@ -65,7 +65,7 @@ export default function Home(props) {
                   <p>Suchen Sie nach Hunderten von Jobs und finden Sie <br/>
                       einen Job, der zu Ihnen passt! <br/>
                       Oder erstellen Sie einen Job GRATIS.</p>
-                  <Link href="/admin">
+                  <Link href="/login">
                     <button className={styles.heroButton}>Poste einen Job</button>
                   </Link>
               </div>

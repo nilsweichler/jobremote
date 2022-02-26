@@ -6,5 +6,5 @@ import { UserContext } from '../lib/context';
 export default function AuthCheck(props, admin) {
     const { company, isAdmin } = useContext(UserContext);
 
-    return company ? props.children : props.fallback || <Link href="/enter">You must be signed in</Link>;
+    return company ? props.children : props.fallback || <Link href="/login">You must be signed in</Link>;
 }
