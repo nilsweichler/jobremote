@@ -79,7 +79,7 @@ function CreateNewPost() {
 
         await ref.set(data);
 
-        toast.success('Post created!')
+        toast.success('Jobposting erstellt!')
 
         // Imperative navigation after doc is set
         router.push(`/admin/${slug}`);

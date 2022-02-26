@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import ReactMarkdown from 'react-markdown';
 
 // UI component for main post content
 export default function PostContent({ post }) {
@@ -14,8 +13,8 @@ export default function PostContent({ post }) {
           <a className="text-info">@{post.company}</a>
         </Link>{' '}
                 on {createdAt.toISOString()}
-      </span>
-            <ReactMarkdown>{post?.info}</ReactMarkdown>
+            </span>
+            <div dangerouslySetInnerHTML={{__html: post?.info}} ></div>
         </div>
     );
 }
