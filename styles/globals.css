@@ -8,7 +8,7 @@
   --color-blue: #503AE2;
   --color-red: #FF8EA1;
   --color-green: #3bdf72;
-  --color-blue-gray: #747AA0;
+  --color-blue-gray: #292E51;
   --color-dark: #191D38;
 }
 html,
@@ -103,6 +103,57 @@ code {
   width: 50px;
   height: 50px;
   cursor: pointer;
+}
+
+.subnavbtn {
+  padding: 0;
+  background: none;
+}
+
+/* Style the subnav content - positioned absolute */
+.subnav-content {
+  display: none;
+  position: absolute;
+  right: 15vw;
+  background-color: var(--color-blue-gray);
+  z-index: 1;
+  border-radius: 0px 0px 10px 10px;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 25%), 0 0 1px rgb(0 0 0 / 35%);
+}
+
+.subnav-content li:first-child {
+  border: none;
+}
+
+.subnav-content li:first-child a {
+  display: flex;
+}
+
+.subnav-content li:first-child a p {
+  margin-left: 15px;
+}
+
+.subnav-content li:first-child a p:first-letter {
+  text-transform: capitalize;
+}
+
+.subnav-content li:last-child {
+  border-radius: 0px 0px 10px 10px;
+}
+
+.subnav-content li {
+  border-top: 1px solid rgba(0, 0, 0, 0.7);
+  border-radius: 0px;
+  padding: 20px 30px 20px 10px;
+}
+
+.subnav-content li:hover:not(:first-child) {
+  background-color: var(--color-blue);
+}
+
+/* When you move the mouse over the subnav container, open the subnav content */
+.subnav:hover .subnav-content {
+  display: block;
 }
 
 /* Buttons */

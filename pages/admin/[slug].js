@@ -1,7 +1,6 @@
 import styles from '../../styles/Admin.module.css';
 import AuthCheck from '../../components/AuthCheck';
 import { firestore, auth, serverTimestamp } from '../../lib/firebase';
-
 import {useEffect, useState} from 'react';
 import { useRouter } from 'next/router';
 

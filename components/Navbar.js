@@ -33,14 +33,20 @@ export default function Navbar() {
                 <button className="btn-blue">Poste einen Job</button>
               </Link>
             </li>
-            <li>
-              <button onClick={signOut} className="btn-blue">Ausloggen</button>
-            </li>
-            <li>
-              <Link href={`/${slugify(company.toLowerCase())}`}>
-                <img className="avatar" src={user?.photoURL} />
-              </Link>
-            </li>
+            <div className="subnav">
+              <button className="subnavbtn"><img className="avatar" src={user?.photoURL || "hacker.png"} /></button>
+              <div className="subnav-content">
+                <li>
+                  <a href={`/${slugify(company.toLowerCase())}`} className="submenu-link"><img className="avatar" src={user?.photoURL || "hacker.png"} /><p>{company}</p></a>
+                </li>
+                <li>
+                  <a href="/settings" className="submenu-link">Einstellungen</a>
+                </li>
+                <li>
+                  <a onClick={signOut} href="" className="submenu-logout">Ausloggen</a>
+                </li>
+              </div>
+            </div>
           </>
         )}
 
