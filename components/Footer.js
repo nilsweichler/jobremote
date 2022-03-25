@@ -1,5 +1,7 @@
 // footer component
 
+import Link from "next/link";
+
 export default function Footer() {
     return (
         <footer className="footer">
@@ -8,9 +10,9 @@ export default function Footer() {
                 <img src="jobremote-logo.svg" />
             </div>
             <div className="footer-links">
-            <a href="#">Impressum</a>
-            <a href="#">Datenschutz</a>
-            <a href="#">AGB</a>
+            <Link href="#">Impressum</Link>
+            <Link href="#">Datenschutz</Link>
+            <Link href="#">AGB</Link>
             </div>
         </div>
         </footer>
