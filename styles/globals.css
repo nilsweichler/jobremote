@@ -24,6 +24,7 @@ body {
 
 main {
   padding: 1rem 15vw;
+  min-height: 100vh;
 }
 
 h1 { font-size: 2.2rem; font-family: 'Merriweather', serif;}
