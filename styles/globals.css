@@ -156,6 +156,23 @@ code {
   display: block;
 }
 
+/* Footer */
+footer {
+  padding: 1rem 15vw;
+  background-color: #292E51;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-links a {
+  margin-left: 10px;
+}
+
+
 /* Buttons */
 
 .btn, button {
@@ -222,11 +239,13 @@ code {
 }
 
 .card-img-center {
-  width:20%;
-  display:block;
-  margin:auto;
+  display: block;
+  margin: auto;
   border-radius: 50%;
-  max-width: 150px;
+  width: 150px;
+  height: 150px;
+  background-color: white;
+  object-fit: scale-down;
 }
 
 .card-info {

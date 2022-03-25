@@ -2,6 +2,7 @@ import Navbar from '../components/Navbar'
 import '../styles/globals.css'
 import { Toaster } from 'react-hot-toast'
 import {UserContext} from "../lib/context";
+import Footer from '../components/Footer';
 
 import { useUserData } from '../lib/hooks';
 
@@ -15,6 +16,7 @@ function MyApp({ Component, pageProps }) {
     <Navbar></Navbar>
     <Component {...pageProps} />
     <Toaster></Toaster>
+    <Footer></Footer>
   </UserContext.Provider>
   );
 }

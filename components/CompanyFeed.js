@@ -1,5 +1,7 @@
 import Link from 'next/link';
 import slugify from "slugify";
+import { useState, useEffect } from 'react';
+import { firestore } from '../lib/firebase';
 
 export default function CompanyFeed({ posts, admin }) {
     return posts ? posts.map((post) => <PostItem post={post} key={post.slug} admin={admin} />) : null;
@@ -10,11 +12,25 @@ function PostItem({ post, admin = false }) {
     const wordCount = post?.info.trim().split(/\s+/g).length;
     const minutesToRead = (wordCount / 100 + 1).toFixed(0);
 
+    const [user, setUser] = useState(null);
+
+    useEffect(() => {
+        if (post?.company) {
+            const getUser = async () => {
+                const userQuery = await firestore.collection('users').where('company', '==', post.company).get();
+                const user = userQuery.docs[0].data();
+                setUser(user);
+            }
+            getUser();
+        }
+    }, [post]);
+
     return (
         <div className="card">
             <Link href={`/${slugify(post.company.toLowerCase())}`}>
                 <a>
                     <strong>By @{slugify(post.company)}</strong>
+                    <img src={user?.photoURL || "hacker.png"}></img>
                 </a>
             </Link>
 

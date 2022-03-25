@@ -8,7 +8,16 @@ import {useRouter} from "next/router";
 import debounce from 'lodash.debounce';
 
 export default function LoginPage(props) {
-    const {user, company} = useContext(UserContext)
+    const {user, company} = useContext(UserContext);
+
+    const Router = useRouter();
+
+    // Check onload if user is logged in if not redirect
+    useEffect(() => {
+        if(user){
+            Router.push("/admin");
+        }
+    }, [user]);
 
   return (
     <main>
