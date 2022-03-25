@@ -1,6 +1,7 @@
 import {useState} from 'react';
 import {auth, storage, STATE_CHANGED, firestore, getUserWithUID, postToJSON} from '../lib/firebase';
 import Loader from './Loader';
+import Router from 'next/router';
 import toast from "react-hot-toast";
 
 
@@ -48,7 +49,8 @@ export default function ImageUploader(props) {
             photoURL: PicURL
         });
 
-        toast.success('Profile Picture updated successfully!')
+        toast.success('Profile Picture updated successfully!');
+        Router.reload(window.location.pathname);
     };
 
 
