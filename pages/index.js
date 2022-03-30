@@ -5,6 +5,7 @@ import CompanyFeed from '../components/CompanyFeed';
 import Loader from '../components/Loader';
 import { firestore, fromMillis, postToJSON } from '../lib/firebase';
 import {useState} from "react";
+import Navbar from '../components/Navbar'
 
 
 // Max post to query per page
@@ -59,6 +60,7 @@ export default function Home(props) {
 
   return (
       <>
+        <Navbar></Navbar>
           <section className={styles.heroSection}>
               <div className={styles.heroText}>
                   <h1>Entdecke hunderte Remote Jobs</h1>
@@ -71,13 +73,15 @@ export default function Home(props) {
               </div>
           </section>
           <main>
-              <CompanyFeed posts={posts} />
+              <div className='job-container'>
+                <CompanyFeed posts={posts} />
 
-              {!loading && !postsEnd && <button onClick={getMorePosts}>Load more</button>}
+                {!loading && !postsEnd && <button onClick={getMorePosts}>Load more</button>}
 
-              <Loader show={loading} />
+                <Loader show={loading} />
 
-              {postsEnd && 'You have reached the end!'}
+                {postsEnd && 'You have reached the end!'}
+              </div>
           </main>
       </>
   )

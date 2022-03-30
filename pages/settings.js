@@ -4,6 +4,7 @@ import {useContext, useEffect, useState} from "react";
 import {UserContext} from "../lib/context";
 import toast from "react-hot-toast";
 import Loader from "../components/Loader";
+import Sidebar from '../components/Sidebar';
 
 
 export default function Settings() {
@@ -38,32 +39,35 @@ export default function Settings() {
     
 
     return (
-        <div>
-            {!user && <Loader show={true}/>}
-            {user && (
-            <div className="box-center">
-            <div className="settings">
-                <h1>Settings</h1>
-                {user?.admin ? <p>Du bist ein Admin</p> : <p>Du bist kein Admin</p>}
-                <img src={user?.photoURL || "hacker.png" } alt="profile picture" className="card-img-center"/>
-                <ImageUploader user={user}/>
-            </div>
-            <div className="password-change">
-                <h2>Change Password</h2>
-                <form onSubmit={changePassword}>
-                    <div className="form-group">
-                        <label htmlFor="password">New Password</label>
-                        <input type="password" className="form-control" id="password" placeholder="New Password"/>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="confirmPassword">Confirm Password</label>
-                        <input type="password" className="form-control" id="confirmPassword" placeholder="Confirm Password"/>
-                    </div>
-                    <button type="submit" className="btn btn-primary">Change Password</button>
-                </form>
-            </div>
-            </div>
-            )}
-        </div>
+        <>
+            <Sidebar activePath='/settings'></Sidebar>
+            <main className="withSidebar">
+                {!user && <Loader show={true}/>}
+                {user && (
+                <div className="box-center">
+                <div className="settings">
+                    <h1>Settings</h1>
+                    {user?.admin ? <p>Du bist ein Admin</p> : <p>Du bist kein Admin</p>}
+                    <img src={user?.photoURL || "hacker.png" } alt="profile picture" className="card-img-center"/>
+                    <ImageUploader user={user}/>
+                </div>
+                <div className="password-change">
+                    <h2>Change Password</h2>
+                    <form onSubmit={changePassword}>
+                        <div className="form-group">
+                            <label htmlFor="password">New Password</label>
+                            <input type="password" className="form-control" id="password" placeholder="New Password"/>
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="confirmPassword">Confirm Password</label>
+                            <input type="password" className="form-control" id="confirmPassword" placeholder="Confirm Password"/>
+                        </div>
+                        <button type="submit" className="btn btn-primary">Change Password</button>
+                    </form>
+                </div>
+                </div>
+                )}
+            </main>
+        </>
     );
 }

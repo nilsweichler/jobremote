@@ -1,9 +1,12 @@
 import {useRef, useState} from "react";
 import {auth} from "../lib/firebase";
 import toast from "react-hot-toast";
+import Navbar from "../components/Navbar";
 
 export default function RestPasswordPage({ }) {
   return (
+      <>
+      <Navbar></Navbar>
       <main>
           <div className="loginWrapper">
               <h1>Passwort vergessen</h1>
@@ -11,6 +14,7 @@ export default function RestPasswordPage({ }) {
         </ResetPassword>
           </div>
       </main>
+      </>
   )
 }
 

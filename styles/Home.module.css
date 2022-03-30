@@ -2,6 +2,7 @@
     background-image: url("/background.png");
     min-height: 290px;
     background-position: 80% 60%;
+    margin-top: 70px;
 }
 
 .heroText {

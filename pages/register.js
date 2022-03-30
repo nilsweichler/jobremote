@@ -6,17 +6,21 @@ import {useRouter} from "next/router";
 import Link from "next/link";
 import debounce from "lodash.debounce";
 import {CompanyForm} from "./login";
+import Navbar from "../components/Navbar";
 
 export default function RegisterPage({ }) {
     const {user, company} = useContext(UserContext)
 
   return (
+      <>
+      <Navbar></Navbar>
     <main>
         <div className="loginWrapper">
             <h1>Registrieren</h1>
             {user && !company ? <CompanyForm/> : <RegisterWithUserAndPass/> }
         </div>
     </main>
+    </>
   )
 }
 

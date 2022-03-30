@@ -2,6 +2,7 @@ import { getUserWithCompany, postToJSON } from '../../lib/firebase';
 import CompanyProfile from '../../components/CompanyProfile';
 import CompanyFeed from '../../components/CompanyFeed';
 import Metatags from "../../components/Metatags";
+import Navbar from '../../components/Navbar';
 
 export async function getServerSideProps({ query }) {
     const { company } = query;
@@ -37,10 +38,13 @@ export async function getServerSideProps({ query }) {
 
 export default function CompanyPage({ user, posts }) {
   return (
-    <main>
-        <Metatags title={user.company + " Profile Page"} />
-      <CompanyProfile user={user}></CompanyProfile>
-        <CompanyFeed posts={posts}></CompanyFeed>
-    </main>
+    <>
+        <Navbar></Navbar>
+        <main>
+            <Metatags title={user.company + " Profile Page"} />
+        <CompanyProfile user={user}></CompanyProfile>
+            <CompanyFeed posts={posts}></CompanyFeed>
+        </main>
+    </>
   )
 }

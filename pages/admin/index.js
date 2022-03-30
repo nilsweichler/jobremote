@@ -12,9 +12,13 @@ import { useCollection } from 'react-firebase-hooks/firestore';
 import slugify from 'slugify';
 import toast from 'react-hot-toast';
 
+import Sidebar from '../../components/Sidebar';
+
 export default function AdminPostsPage(props) {
     return (
-        <main>
+        <>
+        <Sidebar activePath='/admin'></Sidebar>
+        <main className='withSidebar'>
             <AdminCheck admin={true}>
                 <p>Test</p>
             </AdminCheck>
@@ -23,6 +27,7 @@ export default function AdminPostsPage(props) {
                 <PostList />
             </AuthCheck>
         </main>
+        </>
     );
 }
 

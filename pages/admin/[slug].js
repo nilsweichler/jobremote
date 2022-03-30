@@ -11,6 +11,7 @@ import Editor from "../../components/Editor";
 import toast from "react-hot-toast";
 
 import ReactMarkdown from 'react-markdown';
+import Sidebar from '../../components/Sidebar';
 
 export default function JobPostEdit(props) {
     return (
@@ -30,21 +31,24 @@ function PostManager() {
     const [post] = useDocumentData(postRef);
 
     return (
-        <main className={styles.container}>
-            {post && (
-                <>
-                    <section>
-                        <h1>{post.title}</h1>
-                        <p>ID: {post.slug}</p>
+        <>
+            <Sidebar></Sidebar>
+            <main className='withSidebar'>
+                {post && (
+                    <>
+                        <section>
+                            <h1>{post.title}</h1>
+                            <p>ID: {post.slug}</p>
 
-                        <PostForm postRef={postRef} defaultValues={post} />
-                        <Link href={`/${post.company}/${post.slug}`}>
-                            <button className="btn-blue">Live view</button>
-                        </Link>
-                    </section>
-                </>
-            )}
-        </main>
+                            <PostForm postRef={postRef} defaultValues={post} />
+                            <Link href={`/${post.company}/${post.slug}`}>
+                                <button className="btn-blue">Live view</button>
+                            </Link>
+                        </section>
+                    </>
+                )}
+            </main>
+        </>
     );
 }
 

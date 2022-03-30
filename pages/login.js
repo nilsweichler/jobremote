@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import Link from 'next/link'
 import {UserContext} from "../lib/context";
 import {useRouter} from "next/router";
+import Navbar from "../components/Navbar";
 
 import debounce from 'lodash.debounce';
 
@@ -20,12 +21,15 @@ export default function LoginPage(props) {
     }, [user]);
 
   return (
+      <>
+      <Navbar></Navbar>
     <main>
         <div className="loginWrapper">
             {user && !company ? null : <SignInWithUserAndPass/> }
             {user && !company ? <CompanyForm/> : <SignInGoogleButton/> }
         </div>
     </main>
+    </>
   )
 }
 
