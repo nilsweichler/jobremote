@@ -3,6 +3,7 @@ import PostContent from '../../components/PostContent';
 import { firestore, getUserWithCompany, postToJSON } from '../../lib/firebase';
 import { useDocumentData } from 'react-firebase-hooks/firestore';
 import Metatags from "../../components/Metatags";
+import Navbar from "../../components/Navbar";
 
 export async function getStaticProps({ params }) {
   const { company, slug } = params;
@@ -51,11 +52,14 @@ export default function JobPosting(props) {
   const post = realtimePost ||props.post;
 
   return (
-      <main className={styles.container}>
-        <Metatags title={post.title} description={post.info} />
-        <section>
-          <PostContent post={post}></PostContent>
-        </section>
-      </main>
+      <>
+        <Navbar></Navbar>
+        <main className={styles.container}>
+          <Metatags title={post.title} description={post.info} />
+          <section>
+            <PostContent post={post}></PostContent>
+          </section>
+        </main>
+      </>
   )
 }

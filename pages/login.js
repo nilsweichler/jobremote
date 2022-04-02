@@ -1,4 +1,4 @@
-import {auth, firestore, googleAuthProvider} from "../lib/firebase";
+import {auth, firestore, googleAuthProvider, githubAuthProvider} from "../lib/firebase";
 import {useCallback, useContext, useEffect, useRef, useState} from "react";
 import toast from "react-hot-toast";
 import Link from 'next/link'
@@ -15,10 +15,10 @@ export default function LoginPage(props) {
 
     // Check onload if user is logged in if not redirect
     useEffect(() => {
-        if(user){
+        if(user && company){
             Router.push("/admin");
         }
-    }, [user]);
+    }, [user && company]);
 
   return (
       <>
@@ -26,6 +26,7 @@ export default function LoginPage(props) {
     <main>
         <div className="loginWrapper">
             {user && !company ? null : <SignInWithUserAndPass/> }
+            {user && !company ? null : <SignInGithubButton/> }
             {user && !company ? <CompanyForm/> : <SignInGoogleButton/> }
         </div>
     </main>
@@ -68,9 +69,15 @@ function SignInGoogleButton() {
     const router = useRouter();
 
   const signInWithGoogle = async () => {
-      await router.push('/admin');
     await auth.signInWithPopup(googleAuthProvider);
   };
+
+  //redirect to admin page if user is logged in
+  useEffect(() => {
+      if(auth.currentUser){
+          router.push('/admin');
+      }
+  }, [auth.currentUser]);
 
   return (
       <>
@@ -78,6 +85,29 @@ function SignInGoogleButton() {
       <img src={'/google.png'}/> Einloggen mit Google
     </button>
     <Link href="/register">Noch kein Account? Registrieren</Link>
+      </>
+  );
+}
+
+// Sign in with Github
+function SignInGithubButton() {
+    const router = useRouter();
+
+  const signInWithGithub = async () => {
+      await auth.signInWithRedirect(githubAuthProvider);
+  };
+
+  useEffect(() => {
+      if(auth.currentUser){
+          router.push('/admin');
+      }
+    }, [auth.currentUser]);
+
+  return (
+      <>
+    <button className="btn-github" onClick={signInWithGithub}>
+      <img src={'/github.png'}/> Einloggen mit Github
+    </button>
       </>
   );
 }

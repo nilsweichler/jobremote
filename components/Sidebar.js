@@ -30,11 +30,22 @@ export default function Sidebar({activePath}) {
     }, 500);
   }
 
+  const signOutNav =  () => {
+    router.push('/');
+    //timeout the signout to make sure the user sees the loading screen
+    setTimeout(() => {
+      auth.signOut();
+    }, 500);
+  }
+
   return (
     <>
     <IconContext.Provider value={{color: '#fff'}}>
         <div className="sidebar">
           <a className={sidebar ? 'menu-bars-burger active' : 'menu-bars-burger'}><FaIcons.FaBars onClick={toggleSidebar}/></a>
+          <Link href="/">
+            <button className="btn-logo"><img src="jobremote-logo.svg"/></button>
+          </Link>
           {company && (
           <>
             <div className="subnav">
@@ -47,7 +58,7 @@ export default function Sidebar({activePath}) {
                   <a href="/settings" className="submenu-link">Einstellungen</a>
                 </li>
                 <li>
-                  <a onClick={signOut} href="" className="submenu-logout">Ausloggen</a>
+                  <a onClick={signOutNav} href="" className="submenu-logout">Ausloggen</a>
                 </li>
               </div>
             </div>

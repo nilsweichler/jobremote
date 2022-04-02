@@ -73,15 +73,14 @@ export default function Home(props) {
               </div>
           </section>
           <main>
-              <div className='job-container'>
+              <h2>Aktuelle Jobs</h2>
+              <div className='grid-container'>
                 <CompanyFeed posts={posts} />
-
-                {!loading && !postsEnd && <button onClick={getMorePosts}>Load more</button>}
-
-                <Loader show={loading} />
-
-                {postsEnd && 'You have reached the end!'}
               </div>
+
+              <Loader show={loading} />
+              {!loading && !postsEnd && <button onClick={getMorePosts}>Load more</button>}
+              {postsEnd && 'You have reached the end!'}
           </main>
       </>
   )

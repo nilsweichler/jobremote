@@ -10,6 +10,7 @@
   "dependencies": {
     "@ckeditor/ckeditor5-build-classic": "^32.0.0",
     "@ckeditor/ckeditor5-react": "^4.0.0",
+    "animate.css": "^4.1.1",
     "firebase": "^8.2.1",
     "install": "^0.13.0",
     "lodash.debounce": "^4.0.8",

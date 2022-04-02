@@ -41,7 +41,9 @@ function PostList() {
     return (
         <>
             <h1>Manage your Posts</h1>
-            <CompanyFeed posts={posts} admin />
+            <div className="grid-container">
+                <CompanyFeed posts={posts} admin />
+            </div>
         </>
     );
 }
