@@ -5,12 +5,14 @@ import CompanyFeed from '../../components/CompanyFeed';
 import { UserContext } from '../../lib/context';
 import { firestore, auth, serverTimestamp } from '../../lib/firebase';
 
-import { useContext, useState } from 'react';
+import {useCallback, useContext, useState, useEffect} from "react";
 import { useRouter } from 'next/router';
 
 import { useCollection } from 'react-firebase-hooks/firestore';
 import slugify from 'slugify';
 import toast from 'react-hot-toast';
+
+import debounce from 'lodash.debounce';
 
 import Sidebar from '../../components/Sidebar';
 
@@ -59,6 +61,10 @@ function CreateNewPost() {
     // Validate length
     const isValid = title.length > 3 && title.length < 100;
 
+    //Check if slug is unique
+    const [isUnique, setIsUnique] = useState(false);
+    const [loading, setLoading] = useState(false);
+
     // Create a new post in firestore
     const createPost = async (e) => {
         e.preventDefault();
@@ -99,8 +105,8 @@ function CreateNewPost() {
         <form onSubmit={createPost}>
             <input
                 value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                placeholder="Jobbezeichnung m/w/d"
+                onChange={(e) => {setTitle(e.target.value)}}
+                placeholder="Jobbezeichnung"
                 className={styles.input}
             />
             <p>

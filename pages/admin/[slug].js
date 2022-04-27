@@ -39,7 +39,6 @@ function PostManager() {
                         <section>
                             <h1>{post.title}</h1>
                             <p>ID: {post.slug}</p>
-
                             <PostForm postRef={postRef} defaultValues={post} />
                             <Link href={`/${post.company}/${post.slug}`}>
                                 <button className="btn-blue">Live view</button>
@@ -78,8 +77,28 @@ function PostForm({ defaultValues, postRef }) {
     return (
         <form onSubmit={handleSubmit(updatePost)}>
             <div>
-
+                <h2>Post Info</h2>
                 <Editor name="infoText" onChange={(data) => {setData(data);}} editorLoaded={editorLoaded} value={defaultValues.info}></Editor>
+
+                <h2>Profile</h2>
+                <Editor name="profileText" onChange={(data) => {setData(data);}} editorLoaded={editorLoaded} value={defaultValues.profile}></Editor>
+
+                <h2>Tasks</h2>
+                <Editor name="tasksText" onChange={(data) => {setData(data);}} editorLoaded={editorLoaded} value={defaultValues.tasks}></Editor>
+
+                <h2>Type</h2>
+                <select name="type">
+                    <option value="">Select a category</option>
+                    <option value="fulltime">Fulltime</option>
+                    <option value="parttime">Parttime</option>
+                    <option value="internship">Internship</option>
+                    <option value="freelance">Freelance</option>
+                </select>
+
+                <h2>Job Location</h2>
+                <input name="companyCity" placeholder="City" defaultValue={defaultValues.companyCity} />
+                <input name="companyCountry" placeholder="Country" defaultValue={defaultValues.companyCountry} />
+
 
                 <button type="submit" className="btn-green">
                     Save Changes
