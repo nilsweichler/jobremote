@@ -79,7 +79,7 @@ export default function Home(props) {
               </div>
 
               <Loader show={loading} />
-              {!loading && !postsEnd && <button onClick={getMorePosts}>Load more</button>}
+              {!loading && !postsEnd && <button onClick={getMorePosts}>Mehr laden</button>}
               {postsEnd && 'You have reached the end!'}
           </main>
       </>

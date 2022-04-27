@@ -71,6 +71,8 @@ function CreateNewPost() {
             slug,
             uid,
             company,
+            companyCity: '',
+            companyCountry: '',
             published: false,
             info: '# hello world!',
             tasks: '',
