@@ -2,18 +2,30 @@ import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
 import * as IoIcons from 'react-icons/io';
 import Link from 'next/link';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {SidebarData} from './SidebarData';
 import { IconContext } from 'react-icons';
 import {useRouter} from 'next/router';
-import { auth } from '../lib/firebase';
+import {auth, firestore, postToJSON} from '../lib/firebase';
 import { useContext } from 'react';
 import { UserContext } from '../lib/context';
 import slugify from 'slugify';
+import AdminCheck from '../components/AdminCheck';
 
 export default function Sidebar({activePath}) {
   const {user, company} = useContext(UserContext);
   const [sidebar, setSidebar] = useState(true);
+  const [jobCount, setJobCount] = useState(0);
+
+  useEffect(() => {
+    if(user) {
+      firestore.collectionGroup('jobs').where('published', '==', false).orderBy('createdAt', 'desc').get().then(snapshot => {
+        setJobCount(snapshot.size);
+      });
+    }
+  }, [user, company]);
+
+
 
   const toggleSidebar = () => {
     setSidebar(!sidebar);
@@ -77,6 +89,11 @@ export default function Sidebar({activePath}) {
                 </Link>
               </li>
             ))}
+            <AdminCheck admin={true}>
+              <li className='nav-text'>
+                <a href="/verify" className={activePath === '/verify' ? 'active' : ''}><IoIcons.IoIosLock/><span>Admin</span><span className="unpublished-count">{jobCount}</span></a>
+              </li>
+            </AdminCheck>
             <li className='nav-text'>
               <a onClick={signOut}><IoIcons.IoIosLogOut/><span>Logout</span></a>
             </li>

@@ -25,96 +25,9 @@ export default function AdminPostsPage(props) {
                 <p>Test</p>
             </AdminCheck>
             <AuthCheck>
-                <CreateNewPost />
-                <PostList />
+                <p>You have --- Job Posts</p>
             </AuthCheck>
         </main>
         </>
-    );
-}
-
-function PostList() {
-    const ref = firestore.collection('users').doc(auth.currentUser.uid).collection('jobs');
-    const query = ref.orderBy('createdAt');
-    const [querySnapshot] = useCollection(query);
-
-    const posts = querySnapshot?.docs.map((doc) => doc.data());
-
-    return (
-        <>
-            <h1>Manage your Posts</h1>
-            <div className="grid-container">
-                <CompanyFeed posts={posts} admin />
-            </div>
-        </>
-    );
-}
-
-function CreateNewPost() {
-    const router = useRouter();
-    const { company } = useContext(UserContext);
-    const [title, setTitle] = useState('');
-
-    // Ensure slug is URL safe
-    const slug = encodeURI(slugify(title));
-
-    // Validate length
-    const isValid = title.length > 3 && title.length < 100;
-
-    //Check if slug is unique
-    const [isUnique, setIsUnique] = useState(false);
-    const [loading, setLoading] = useState(false);
-
-    // Create a new post in firestore
-    const createPost = async (e) => {
-        e.preventDefault();
-        const uid = auth.currentUser.uid;
-        const ref = firestore.collection('users').doc(uid).collection('jobs').doc(slug);
-
-        // Tip: give all fields a default value here
-        const data = {
-            title,
-            slug,
-            uid,
-            company,
-            companyCity: '',
-            companyCountry: '',
-            published: false,
-            info: '# hello world!',
-            tasks: '',
-            profile: '',
-            benefits: '',
-            type: '',
-            category: '',
-            entry: '',
-            contact: [],
-            createdAt: serverTimestamp(),
-            updatedAt: serverTimestamp(),
-        };
-
-        await ref.set(data);
-
-        toast.success('Jobposting erstellt!')
-
-        // Imperative navigation after doc is set
-        router.push(`/admin/${slug}`);
-
-    };
-
-    return (
-        <form onSubmit={createPost}>
-            <input
-                value={title}
-                onChange={(e) => {setTitle(e.target.value)}}
-                placeholder="Jobbezeichnung"
-                className={styles.input}
-            />
-            <p>
-                <strong>Slug:</strong> {slug}
-            </p>
-            <button type="submit" disabled={!isValid} className="btn-green">
-                Create New Post
-            </button>
-        </form>
     );
 }

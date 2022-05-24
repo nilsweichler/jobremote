@@ -137,7 +137,7 @@ export function CompanyForm() {
 
         // Commit both docs together as a batch write.
         const batch = firestore.batch();
-        batch.set(userDoc, { company: formValue.toLowerCase(), photoURL: user.photoURL, displayName: user.displayName, admin: false });
+        batch.set(userDoc, { company: formValue.toLowerCase(), companyInfo: "", photoURL: user.photoURL, displayName: user.displayName, admin: false });
         batch.set(companyDoc, { uid: user.uid });
 
         await batch.commit();

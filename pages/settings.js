@@ -36,6 +36,21 @@ export default function Settings() {
             toast.error("Passwords do not match");
         }
     };
+
+    //Change companyInfo
+    const changeCompanyInfo = (e) => {
+        e.preventDefault();
+        let companyInfo = document.getElementById("companyInfo").value;
+        const postRef = firestore.collection('users').doc(auth.currentUser.uid);
+        postRef.update({
+            companyInfo: companyInfo
+        }).then(() => {
+            toast.success("Company info changed successfully");
+        }).catch(error => {
+            toast.error(error.message);
+        });
+    }
+
     
 
     return (
@@ -50,6 +65,11 @@ export default function Settings() {
                     {user?.admin ? <p>Du bist ein Admin</p> : <p>Du bist kein Admin</p>}
                     <img src={user?.photoURL || "hacker.png" } alt="profile picture" className="card-img-center"/>
                     <ImageUploader user={user}/>
+                    <form onSubmit={changeCompanyInfo}>
+                        <label>Change Company Info</label>
+                        <textarea id="companyInfo" defaultValue={user?.companyInfo}></textarea>
+                        <button type="submit" className="btn btn-primary">Speichern</button>
+                    </form>
                 </div>
                 <div className="password-change">
                     <h2>Change Password</h2>

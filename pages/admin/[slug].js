@@ -55,12 +55,22 @@ function PostForm({ defaultValues, postRef }) {
     const { register, handleSubmit, reset, watch } = useForm({ defaultValues, mode: 'onChange' });
 
     const [editorLoaded, setEditorLoaded] = useState(false);
-    const [data, setData] = useState("");
+    const [info, setInfo] = useState(defaultValues.info);
+    const [profile, setProfile] = useState(defaultValues.profile);
+    const [tasks, setTasks] = useState(defaultValues.tasks);
+    const [jobType, setType] = useState(defaultValues.type);
+    const [city, setCity] = useState(defaultValues.companyCity);
+    const [country, setCountry] = useState(defaultValues.companyCountry);
 
     const updatePost = async ({ info, published }) => {
-        console.log(data)
+        console.log(info)
         await postRef.update({
-            info: data,
+            info: info,
+            profile: profile,
+            tasks: tasks,
+            type: jobType,
+            companyCity: city,
+            companyCountry: country,
             published,
             updatedAt: serverTimestamp(),
         });
@@ -72,32 +82,33 @@ function PostForm({ defaultValues, postRef }) {
 
     useEffect(() => {
         setEditorLoaded(true);
+        console.log(jobType);
     }, []);
 
     return (
         <form onSubmit={handleSubmit(updatePost)}>
             <div>
                 <h2>Post Info</h2>
-                <Editor name="infoText" onChange={(data) => {setData(data);}} editorLoaded={editorLoaded} value={defaultValues.info}></Editor>
+                <Editor name="infoText" onChange={(info) => {setInfo(info);}} editorLoaded={editorLoaded} value={defaultValues.info}></Editor>
 
                 <h2>Profile</h2>
-                <Editor name="profileText" onChange={(data) => {setData(data);}} editorLoaded={editorLoaded} value={defaultValues.profile}></Editor>
+                <Editor name="profileText" onChange={(profile) => {setProfile(profile);}} editorLoaded={editorLoaded} value={defaultValues.profile}></Editor>
 
                 <h2>Tasks</h2>
-                <Editor name="tasksText" onChange={(data) => {setData(data);}} editorLoaded={editorLoaded} value={defaultValues.tasks}></Editor>
+                <Editor name="tasksText" onChange={(tasks) => {setTasks(tasks);}} editorLoaded={editorLoaded} value={defaultValues.tasks}></Editor>
 
                 <h2>Type</h2>
-                <select name="type">
+                <select name="type" defaultValue={defaultValues.type} onChange={(jobType) => {setType(jobType.target.value);}} required>
                     <option value="">Select a category</option>
-                    <option value="fulltime">Fulltime</option>
-                    <option value="parttime">Parttime</option>
-                    <option value="internship">Internship</option>
-                    <option value="freelance">Freelance</option>
+                    <option value="Fulltime">Fulltime</option>
+                    <option value="Parttime">Parttime</option>
+                    <option value="Internship">Internship</option>
+                    <option value="Freelance">Freelance</option>
                 </select>
 
                 <h2>Job Location</h2>
-                <input name="companyCity" placeholder="City" defaultValue={defaultValues.companyCity} />
-                <input name="companyCountry" placeholder="Country" defaultValue={defaultValues.companyCountry} />
+                <input name="companyCity" placeholder="City" onChange={(city) => {setCity(city.target.value);}} defaultValue={defaultValues.companyCity} required/>
+                <input name="companyCountry" placeholder="Country" onChange={(country) => {setCountry(country.target.value);}} defaultValue={defaultValues.companyCountry} required/>
 
 
                 <button type="submit" className="btn-green">
