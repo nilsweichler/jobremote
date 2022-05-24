@@ -34,7 +34,9 @@ export default function Navbar() {
               </Link>
             </li>
             <div className="subnav">
-              <button className="subnavbtn"><img className="avatar" src={user?.photoURL || "hacker.png"} /></button>
+              <Link href="/admin">
+                <button className="subnavbtn"><img className="avatar" src={user?.photoURL || "hacker.png"} /></button>
+              </Link>
               <div className="subnav-content">
                 <li>
                   <a href={`/${slugify(company.toLowerCase())}`} className="submenu-link"><img className="avatar" src={user?.photoURL || "hacker.png"} /><p>{company}</p></a>
