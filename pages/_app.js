@@ -15,7 +15,6 @@ function MyApp({ Component, pageProps }) {
   <UserContext.Provider value={userData}>
     <Component {...pageProps} />
     <Toaster></Toaster>
-    <Footer></Footer>
   </UserContext.Provider>
   );
 }

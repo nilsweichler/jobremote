@@ -6,6 +6,7 @@ import Loader from '../components/Loader';
 import { firestore, fromMillis, postToJSON } from '../lib/firebase';
 import {useState} from "react";
 import Navbar from '../components/Navbar'
+import Footer from "../components/Footer";
 
 
 // Max post to query per page
@@ -81,6 +82,7 @@ export default function Home(props) {
                   {postsEnd && 'You have reached the end!'}
               </div>
           </main>
+          <Footer></Footer>
       </>
   )
 }

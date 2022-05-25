@@ -4,6 +4,7 @@ import { firestore, getUserWithCompany, postToJSON } from '../../lib/firebase';
 import { useDocumentData } from 'react-firebase-hooks/firestore';
 import Metatags from "../../components/Metatags";
 import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
 
 export async function getStaticProps({ params }) {
   const { company, slug } = params;
@@ -60,6 +61,7 @@ export default function JobPosting(props) {
             <PostContent post={post}></PostContent>
           </section>
         </main>
+        <Footer></Footer>
       </>
   )
 }

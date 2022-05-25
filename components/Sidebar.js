@@ -52,7 +52,7 @@ export default function Sidebar({activePath}) {
 
   return (
     <>
-    <IconContext.Provider value={{color: '#fff'}}>
+    <IconContext.Provider value={{color: '#000'}}>
         <div className="sidebar">
           <a className={sidebar ? 'menu-bars-burger active' : 'menu-bars-burger'}><FaIcons.FaBars onClick={toggleSidebar}/></a>
           <Link href="/">

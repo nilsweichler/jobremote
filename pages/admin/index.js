@@ -1,4 +1,3 @@
-import styles from '../../styles/Admin.module.css';
 import AuthCheck from '../../components/AuthCheck';
 import AdminCheck from '../../components/AdminCheck';
 
@@ -10,8 +9,6 @@ import GridContainer from "../../components/ui-library/Grid/GridContainer";
 import GridItem from "../../components/ui-library/Grid/GridItem";
 
 import * as FaIcons from 'react-icons/fa';
-import * as AiIcons from 'react-icons/ai';
-import * as IoIcons from 'react-icons/io';
 
 export default function AdminPostsPage(props) {
 
@@ -19,10 +16,10 @@ export default function AdminPostsPage(props) {
         <>
             <Sidebar activePath='/admin'></Sidebar>
             <main className='withSidebar'>
+                <AuthCheck>
                 <AdminCheck admin={true}>
                     <AdminWidgetTotal></AdminWidgetTotal>
                 </AdminCheck>
-                <AuthCheck>
                     <NormalUserWidget></NormalUserWidget>
                 </AuthCheck>
             </main>

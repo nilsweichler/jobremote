@@ -59,7 +59,7 @@ export default function Settings() {
             <main className="withSidebar">
                 {!user && <Loader show={true}/>}
                 {user && (
-                <div className="box-center">
+                <div>
                 <div className="settings">
                     <h1>Settings</h1>
                     {user?.admin ? <p>Du bist ein Admin</p> : <p>Du bist kein Admin</p>}

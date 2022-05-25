@@ -1,11 +1,13 @@
 .heroSection {
     background-image: url("/background.png");
     min-height: 290px;
-    background-position: 80% 60%;
+    background-position: center;
     margin-top: 70px;
 }
 
 .heroText {
+    color: #fff;
+    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.1);
     text-align: center;
     padding-top: 70px;
     padding-bottom: 50px;

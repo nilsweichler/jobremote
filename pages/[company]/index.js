@@ -3,6 +3,7 @@ import CompanyProfile from '../../components/CompanyProfile';
 import CompanyFeed from '../../components/CompanyFeed';
 import Metatags from "../../components/Metatags";
 import Navbar from '../../components/Navbar';
+import Footer from "../../components/Footer";
 
 export async function getServerSideProps({ query }) {
     const { company } = query;
@@ -47,6 +48,7 @@ export default function CompanyPage({ user, posts }) {
                 <CompanyFeed posts={posts}></CompanyFeed>
             </div>
         </main>
+        <Footer></Footer>
     </>
   )
 }

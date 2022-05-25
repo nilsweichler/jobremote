@@ -4,9 +4,10 @@ import toast from "react-hot-toast";
 import Link from 'next/link'
 import {UserContext} from "../lib/context";
 import {useRouter} from "next/router";
-import Navbar from "../components/Navbar";
+import * as FaIcons from 'react-icons/fa';
 
 import debounce from 'lodash.debounce';
+import * as AiIcons from "react-icons/ai";
 
 export default function LoginPage(props) {
     const {user, company} = useContext(UserContext);
@@ -22,12 +23,16 @@ export default function LoginPage(props) {
 
   return (
       <>
-      <Navbar></Navbar>
     <main>
         <div className="loginWrapper">
-            {user && !company ? null : <SignInWithUserAndPass/> }
+            <Link href="/">
+                <img className="login-logo" src="jobremote-logo.svg" />
+            </Link>
+            <h1>Login</h1>
             {user && !company ? null : <SignInGithubButton/> }
             {user && !company ? <CompanyForm/> : <SignInGoogleButton/> }
+            <p className="login-or">or</p>
+            {user && !company ? null : <SignInWithUserAndPass/> }
         </div>
     </main>
     </>
@@ -36,6 +41,7 @@ export default function LoginPage(props) {
 
 //Sign in with Email and Password
 function SignInWithUserAndPass(e) {
+    const [passwordShown, setPasswordShown] = useState(false);
     const [loading, setLoading] = useState(false);
     const email = useRef();
     const password = useRef();
@@ -54,12 +60,17 @@ function SignInWithUserAndPass(e) {
 
   return (
       <>
-      <h1>Login</h1>
     <form onSubmit={SignInWithData}>
         <input type="email" placeholder="E-Mail" ref={email}></input>
-        <input type="password" placeholder="Passwort" ref={password}></input>
+        <div className="toggle-password">
+            <input type={passwordShown ? "text" : "password"} placeholder="Passwort" ref={password}></input>
+            <span onClick={() => setPasswordShown(!passwordShown)}><AiIcons.AiOutlineEye/></span>
+        </div>
         <button className="btn-login" disabled={loading}>Login</button>
-        <Link href="/resetpw">Passwort vergessen?</Link>
+        <div className="text-links">
+            <Link href="/register"><div><span>Noch kein Account?</span> Registrieren</div></Link>
+            <Link href="/resetpw">Passwort vergessen?</Link>
+        </div>
     </form>
       </>
   );
@@ -84,7 +95,6 @@ function SignInGoogleButton() {
     <button className="btn-google" onClick={signInWithGoogle}>
       <img src={'/google.png'}/> Einloggen mit Google
     </button>
-    <Link href="/register">Noch kein Account? Registrieren</Link>
       </>
   );
 }

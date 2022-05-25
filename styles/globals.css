@@ -3,13 +3,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
 
 :root {
-  --color-bg: #1F2340;
-  --color-text: #fff;
+  --color-bg: #FFFFFF;
+  --color-text: #3C4044;
   --color-blue: #503AE2;
   --color-red: #FF8EA1;
   --color-green: #3bdf72;
-  --color-blue-gray: #292E51;
-  --color-dark: #191D38;
+  --color-blue-gray: rgba(29, 33, 39, 0.15);
+  --color-dark: #F8F8F8;
 }
 html,
 body {
@@ -79,13 +79,13 @@ code {
   height: 70px;
   width: 100%;
   background: var(--color-bg);
-  color: var(--colors-text);
+  color: var(--color-text);
   position: fixed;
   top: 0;
   padding: 0 15vw;
   font-weight: bold;
-  border-bottom: 1px solid var(--color-gray);
   z-index: 99;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
 }
 
 .navbar ul {
@@ -148,10 +148,10 @@ code {
   display: none;
   position: absolute;
   right: 15vw;
-  background-color: var(--color-blue-gray);
+  top: 4.3em;
+  background-color: var(--color-bg);
   z-index: 1;
   border-radius: 0px 0px 10px 10px;
-  box-shadow: 0 1px 2px rgb(0 0 0 / 25%), 0 0 1px rgb(0 0 0 / 35%);
 }
 
 .subnav-content li:first-child {
@@ -182,6 +182,7 @@ code {
 
 .subnav-content li:hover:not(:first-child) {
   background-color: var(--color-blue);
+  color: white;
 }
 
 /* When you move the mouse over the subnav container, open the subnav content */
@@ -192,7 +193,7 @@ code {
 /* Footer */
 footer {
   padding: 1rem 15vw;
-  background-color: #292E51;
+  background-color: #FFFFFF;
   margin-top: 100px;
 }
 
@@ -211,7 +212,7 @@ footer {
 
 .btn, button {
   border: none;
-  color: var(--color-text);
+  color: #FFFFFF;
   background-color: var(--color-blue);
   padding: 0.5rem 1.5rem;
   display: flex;
@@ -251,6 +252,7 @@ footer {
 .btn-google {
   background-color: #fff;
   color: black;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
 }
 
 .btn-google img {
@@ -261,6 +263,7 @@ footer {
 .btn-github {
   background-color: black;
   color: white;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
 }
 
 .btn-github img {
@@ -270,17 +273,20 @@ footer {
 
 /* Cards */
 .grid-container {
-  background-color: var(--color-bg);
+  background-color: var(--color-dark);
   padding: 50px;
+  box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.1);
+
 }
 
 .card {
-  background-color: #747AA0;
+  background-color: var(--color-bg);
   margin-bottom: 20px;
   position: relative;
   display: flex;
   align-items: center;
   padding: 18px 10px 18px 10px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
 }
 
 .card-info {
@@ -307,7 +313,7 @@ footer {
   flex: 33%;
   display: flex;
   justify-content: flex-end;
-  border-right: white solid 3px;
+  border-right: var(--color-blue) solid 3px;
   align-items: center;
   align-self: stretch;
   order: 5;
@@ -320,7 +326,11 @@ footer {
 .card-end button:first-child {
   height: 31px;
   background-color: var(--color-blue-gray);
-  opacity: 70%;
+}
+
+.card-end button:first-child a {
+  color: black;
+  opacity: 100%;
 }
 
 .card-logo {
@@ -334,7 +344,7 @@ footer {
   border-radius: 50%;
   object-fit: contain;
   background-color: white;
-  border: black solid 1px;
+  border: var(--color-blue-gray) solid 1px;
   position: absolute;
   left: -37px;
 }
@@ -342,14 +352,6 @@ footer {
 .card img:hover {
   border: white solid 1px;
   cursor: pointer;
-}
-
-.card-tags .tag {
-  background-color: var(--color-blue);
-  color: white;
-  padding: 5px 10px;
-  border-radius: 0.5rem;
-  margin: 10px 0;
 }
 
 .card .card-buttons button:last-child {
@@ -368,6 +370,7 @@ footer {
   background-color: var(--color-blue);
   border-radius: 50%;
   padding: 5px;
+  color: white;
 }
 
 .admin-settings {
@@ -380,8 +383,6 @@ footer {
 .settings {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 
 /* Login/Register forgotten PW */
@@ -389,8 +390,7 @@ footer {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  max-width: 550px;
-  background-color: #747AA0;
+  max-width: 450px;
   padding: 30px 60px;
   border-radius: 10px;
   position: absolute;
@@ -399,6 +399,34 @@ footer {
   margin-right: -50%;
   transform: translate(-50%, -50%);
   text-align: center;
+  align-items: center;
+}
+
+.loginWrapper h1 {
+  font-size: 2rem;
+  margin-bottom: 50px;
+}
+
+.loginWrapper form input::placeholder {
+  opacity: 20%;
+}
+
+.login-logo {
+  width: 200px;
+  margin: 0;
+  cursor: pointer;
+}
+
+.login-or {
+  margin: 0 0 15px;
+}
+
+.loginWrapper form {
+  margin-bottom: 20px;
+}
+
+.login-spacer {
+  display: flex;
 }
 
 .loginWrapper form input {
@@ -406,9 +434,45 @@ footer {
   border-radius: 5px;
 }
 
+.loginWrapper form input:focus {
+  box-shadow: var(--color-blue) 2px 2px 0px 1px;
+}
+
 .loginWrapper button {
   text-align: center;
   margin-bottom: 10px;
+  width: 100%;
+  margin: 0;
+  margin-bottom: 15px;
+}
+
+.loginWrapper .text-links {
+  display: flex;
+  flex-direction: column;
+}
+
+.loginWrapper .text-links span {
+  opacity: 50%;
+}
+
+.loginWrapper .text-links div {
+  margin-bottom: 10px;
+}
+
+.loginWrapper .toggle-password {
+  position: relative;
+}
+
+.loginWrapper .toggle-password span {
+  position: absolute;
+  right: 7px;
+  top: 7px;
+  color: black;
+}
+
+.loginWrapper .toggle-password span svg {
+  width: 25px;
+  height: 25px;
 }
 
 /* Loader */
@@ -486,7 +550,7 @@ input[type="file"] {
   border-radius: 50%;
   object-fit: contain;
   background-color: white;
-  border: black solid 1px;
+  border: var(--color-blue-gray) solid 1px;
 }
 
 .ck-content {
@@ -529,6 +593,7 @@ input[type="file"] {
   justify-content: center;
   position: fixed;
   top: 0;
+  z-index: 99;
   left: -100%;
   transition: 850ms;
 }
@@ -549,7 +614,7 @@ input[type="file"] {
 
 .nav-text a {
   text-decoration: none;
-  color: white;
+  color: var(--color-text);
   font-size: 18px;
   width: 95%;
   height: 100%;
@@ -561,10 +626,12 @@ input[type="file"] {
 
 .nav-text a:hover {
   background-color: var(--color-blue);
+  color: white;
 }
 
 .nav-text .active {
   background-color: var(--color-blue);
+  color: white;
 }
 
 .nav-menu-items {
@@ -613,6 +680,7 @@ span {
   border-radius: 5px;
   padding: 10px;
   position: relative;
+  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.1);
 }
 
 .dashboard-card-img {
@@ -629,4 +697,10 @@ span {
   border-radius: 1rem;
   width: 70px;
   height: 70px;
+  color: white;
+}
+
+/* if sidebar footer */
+.sidebar ~ .footer {
+  display: none;
 }
