@@ -770,7 +770,7 @@ span {
 [data-theme='dark'] .footer-logo {
     filter: invert(94%) sepia(0%) saturate(5760%) hue-rotate(339deg) brightness(300%) saturate(0%);
   }
-[data-theme='dark'] .sidebar img {
+[data-theme='dark'] .sidebar .btn-logo img {
     filter: invert(94%) sepia(0%) saturate(5760%) hue-rotate(339deg) brightness(300%) saturate(0%);
   }
 
