@@ -16,22 +16,6 @@ function PostItem({ post, admin = false, superAdmin = false }) {
 
     console.log(post);
 
-    //create month array
-    const months = [
-        "Januar",
-        "Februar",
-        "März",
-        "April",
-        "Mai",
-        "Juni",
-        "Juli",
-        "August",
-        "September",
-        "Oktober",
-        "November",
-        "Dezember"
-    ];
-
     const [user, setUser] = useState(null);
     const postinfo = post?.info.replace(/(<([^>]+)>)/gi, " ").slice(0, 88) + '...';
 
@@ -48,60 +32,104 @@ function PostItem({ post, admin = false, superAdmin = false }) {
 
     return (
         <>
-            <div className="card">
-                <Link href={`/${slugify(post.company.toLowerCase())}`}>
-                    <div className="card-logo">
-                        <img src={user?.photoURL} alt={post?.company} />
+                <div className="card">
+                    <div className="card-header">
+                        <div className="card-header-image">
+                            <Link href={`/${slugify(post.company.toLowerCase())}/${post.slug}`}>
+                                <a>
+                                    <img src={user?.photoURL} alt={post.company} />
+                                </a>
+                            </Link>
+                        </div>
                     </div>
-                </Link>
-                <Link href={`/${slugify(post.company.toLowerCase())}/${post.slug}`}>
                     <div className="card-info">
-                        <p>{post.company}</p>
-                        <h2>{post.title}</h2>
-                        <p>{post.type}/{post?.companyCity}, {post?.companyCountry}</p>
+                        <div className="card-tags">
+                            <div className="card-tag">
+                                Remote
+                            </div>
+                            <div className="card-tag">
+                                Mid-Level
+                            </div>
+                        </div>
+                        <div className="card-time">
+                            <span className="card-time-icon">
+                                <IOIcons.IoIosTime color="#DDDEDF"/>
+                            </span>
+                            <span className="card-time-text">
+                                {timeSince(post.createdAt)}
+                            </span>
+                        </div>
                     </div>
-                </Link>
-                <div className="card-mid">
-                    {post.createdAt && <p>{new Date(post.createdAt).getDay()}. {months[new Date(post.createdAt).getMonth()]}</p>}
-                </div>
-                <div className="card-end">
-                    <button>
+                    <div className="card-text">
                         <Link href={`/${slugify(post.company.toLowerCase())}/${post.slug}`}>
-                            <a>Mehr Infos</a>
+                            <a>
+                                <h3>{post.title}</h3>
+                            </a>
                         </Link>
-                    </button>
-                    <button>
-                        <Link href={`/${slugify(post.company.toLowerCase())}/${post.slug}`}>
-                            <a>Bewerben</a>
-                        </Link>
-                    </button>
-                </div>
-
-                {/* If admin view, show extra controls for user */}
-                {admin && (
-                    <div className="admin-settings">
-                        <Link href={`/admin/${post.slug}`}>
-                            <a className="admin-edit"><IOIcons.IoMdCreate/></a>
-                        </Link>
-                        {post.published ? <p className="text-success">Live</p> : <p className="text-danger">Unpublished</p>}
+                        <p>{postinfo}</p>
                     </div>
-                )}
-                {/* if superadmin*/}
-                {superAdmin && (
-                    //set job to published
-                    <div className="admin-settings">
-                        <button onClick={async () => (await firestore.collection('users').doc(post.uid).collection('jobs').doc(post.slug).update({
-                            published: true
-                        }).then(() => {
-                            toast.success('Post updated successfully!');
-                            //reload page
-                            window.location.reload();
-                        }))}>
-                            Publish
+                    <div className="card-buttons">
+                        <button className="card-button">
+                            <Link href={`/${slugify(post.company.toLowerCase())}/${post.slug}`}>
+                                <a>
+                                    Bewerben
+                                </a>
+                            </Link>
+                        </button>
+                        <button className="card-button">
+                            <Link href={`/${slugify(post.company.toLowerCase())}/${post.slug}`}>
+                                <a>
+                                    Mehr
+                                </a>
+                            </Link>
                         </button>
                     </div>
-                )}
-            </div>
+                    {/* If admin view, show extra controls for user */}
+                    {admin && (
+                        <div className="admin-settings">
+                            <Link href={`/admin/${post.slug}`}>
+                                <a className="admin-edit"><IOIcons.IoMdCreate/></a>
+                            </Link>
+                            {post.published ? <p className="text-success">Live</p> : <p className="text-danger">Unpublished</p>}
+                        </div>
+                    )}
+                    {/* if superadmin*/}
+                    {superAdmin && (
+                        //set job to published
+                        <div className="admin-settings">
+                            <button onClick={async () => (await firestore.collection('users').doc(post.uid).collection('jobs').doc(post.slug).update({
+                                published: true
+                            }).then(() => {
+                                toast.success('Post updated successfully!');
+                                //reload page
+                                window.location.reload();
+                            }))}>
+                                Publish
+                            </button>
+                        </div>
+                    )}
+                </div>
         </>
     );
+}
+
+function timeSince(date) {
+    let seconds = Math.floor((new Date() - date) / 1000);
+    let interval = Math.floor(seconds / 31536000);
+    if (interval > 1) {
+        return interval + "y";
+    }
+    interval = Math.floor(seconds / 86400);
+    if (interval > 1) {
+        return interval + "d";
+    }
+    interval = Math.floor(seconds / 3600);
+    if (interval > 1) {
+        return interval + "h";
+    }
+    interval = Math.floor(seconds / 60);
+    if (interval > 1) {
+        return interval + "min";
+    }
+    return Math.floor(seconds) + " seconds";
 }
