@@ -5,6 +5,7 @@ import {UserContext} from "../lib/context";
 import Footer from '../components/Footer';
 
 import { useUserData } from '../lib/hooks';
+import {ThemeProvider} from "next-themes";
 
 function MyApp({ Component, pageProps }) {
 
@@ -12,10 +13,12 @@ function MyApp({ Component, pageProps }) {
 
 
   return (
-  <UserContext.Provider value={userData}>
-    <Component {...pageProps} />
-    <Toaster></Toaster>
-  </UserContext.Provider>
+      <ThemeProvider defaultTheme="system">
+        <UserContext.Provider value={userData}>
+          <Component {...pageProps} />
+          <Toaster></Toaster>
+        </UserContext.Provider>
+      </ThemeProvider>
   );
 }
 

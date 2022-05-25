@@ -7,6 +7,7 @@ import { firestore, fromMillis, postToJSON } from '../lib/firebase';
 import {useState} from "react";
 import Navbar from '../components/Navbar'
 import Footer from "../components/Footer";
+import {useTheme} from "next-themes";
 
 
 // Max post to query per page
@@ -35,6 +36,7 @@ export default function Home(props) {
     const [loading, setLoading] = useState(false);
 
     const [postsEnd, setPostsEnd] = useState(false);
+    const { theme, setTheme } = useTheme();
 
     const getMorePosts = async () => {
         setLoading(true);
@@ -83,7 +85,6 @@ export default function Home(props) {
                       {!loading && !postsEnd && <button onClick={getMorePosts}>Mehr laden</button>}
                       {postsEnd && 'Du hast das Ende erreicht!'}
               </div>
-
           </main>
           <Footer></Footer>
       </>

@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
+
+
 :root {
   --color-bg: #FFFFFF;
   --color-text: #3C4044;
@@ -9,6 +11,9 @@
   --color-blue-gray: rgba(29, 33, 39, 0.15);
   --color-dark: #F8F8F8;
 }
+
+
+
 html,
 body {
   padding: 0;
@@ -183,6 +188,10 @@ code {
   color: white;
 }
 
+.mode-switch:hover {
+  background-color: unset !important;
+}
+
 /* When you move the mouse over the subnav container, open the subnav content */
 .subnav:hover .subnav-content {
   display: block;
@@ -191,7 +200,7 @@ code {
 /* Footer */
 footer {
   padding: 1rem 15vw;
-  background-color: #FFFFFF;
+  background-color: var(--color-bg);
   margin-top: 100px;
 }
 
@@ -355,7 +364,7 @@ footer {
   border: 1px solid rgba(0, 0, 0, 0.05);
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
   border-radius: 4px;
-  background-color: var(--color-bg);
+  background-color: #FFFFFF;
   object-fit: contain;
   margin-bottom: 15px;
 }
@@ -388,7 +397,7 @@ footer {
 
 .card-buttons .card-button:last-child {
   margin-right: 0;
-  background-color: rgba(29, 33, 39, 0.15);
+  background-color: var(--color-blue-gray);
   color: black;
 }
 
@@ -740,3 +749,35 @@ span {
 .sidebar ~ .footer {
   display: none;
 }
+
+[data-theme='dark'] {
+    --color-bg: #191D38;
+    --color-text: #FFFFFF;
+    --color-blue: #503AE2;
+    --color-red: #FF8EA1;
+    --color-green: #3bdf72;
+    --color-blue-gray: #707d93;
+    --color-dark: #1F2340;
+}
+[data-theme='dark'] .card-tag {
+    color: white;
+    background-color: var(--color-blue);
+  }
+
+[data-theme='dark'] .navbar .btn-logo img {
+    filter: invert(94%) sepia(0%) saturate(5760%) hue-rotate(339deg) brightness(300%) saturate(0%);
+  }
+[data-theme='dark'] .footer-logo {
+    filter: invert(94%) sepia(0%) saturate(5760%) hue-rotate(339deg) brightness(300%) saturate(0%);
+  }
+[data-theme='dark'] .sidebar img {
+    filter: invert(94%) sepia(0%) saturate(5760%) hue-rotate(339deg) brightness(300%) saturate(0%);
+  }
+
+[data-theme='dark'] .login-logo {
+    filter: invert(94%) sepia(0%) saturate(5760%) hue-rotate(339deg) brightness(300%) saturate(0%);
+  }
+
+[data-theme='dark'] .sidebar .nav-text svg {
+    filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(73deg) brightness(102%) contrast(102%)
+  }
