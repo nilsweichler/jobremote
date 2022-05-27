@@ -14,8 +14,6 @@ function PostItem({ post, admin = false, superAdmin = false }) {
     const wordCount = post?.info.trim().split(/\s+/g).length;
     const minutesToRead = (wordCount / 100 + 1).toFixed(0);
 
-    console.log(post);
-
     const [user, setUser] = useState(null);
     const postinfo = post?.info.replace(/(<([^>]+)>)/gi, " ").slice(0, 88) + '...';
 

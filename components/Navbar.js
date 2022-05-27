@@ -87,13 +87,35 @@ export default function Navbar() {
 
         {/* user is not signed OR has not created company */}
         {!company && (
+          <>
           <li>
+            <div className="flex-box">
             <Link href="/login">
               <button className="btn-blue">Register/Login</button>
             </Link>
+            <label>
+                      <Switch offColor="#503AE2" onColor="#503AE2" uncheckedIcon={<IoIcons.IoIosSunny style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        height: "100%",
+                        fontSize: 25,
+                        color: "yellow",
+                      }}/>} checkedIcon={<IoIcons.IoIosMoon style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        height: "100%",
+                        fontSize: 25,
+                        color: "yellow",
+                      }}/>} onChange={handleChange} checked={checked} />
+              </label>
+            </div>
           </li>
+          </>
         )}
       </ul>
+      
     </nav>
   );
 }

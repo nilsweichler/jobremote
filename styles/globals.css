@@ -37,6 +37,10 @@ main {
   padding: 1rem 15vw 1rem 2vw;
 }
 
+.clickable-text {
+  cursor: pointer;
+}
+
 h1 { font-size: 2.2rem; font-family: 'Merriweather', serif;}
 h2 { font-size: 1.5rem; }
 h2 { font-size: 1.25rem; }
@@ -56,6 +60,12 @@ p {
 }
 
 img {max-width: 100%;}
+
+.flex-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
 
 input { 
   display: inline-block; 
@@ -320,6 +330,7 @@ footer {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  position: relative;
 }
 
 .card-info {
@@ -770,6 +781,10 @@ span {
 [data-theme='dark'] .footer-logo {
     filter: invert(94%) sepia(0%) saturate(5760%) hue-rotate(339deg) brightness(300%) saturate(0%);
   }
+
+[data-theme='dark'] .nav-menu-items svg {
+  fill: white;
+  } 
 [data-theme='dark'] .sidebar .btn-logo img {
     filter: invert(94%) sepia(0%) saturate(5760%) hue-rotate(339deg) brightness(300%) saturate(0%);
   }

@@ -16,7 +16,6 @@ export async function getServerSideProps(context) {
 
     const posts = (await postsQuery.get()).docs.map(postToJSON);
 
-    console.log(posts);
 
     return {
         props: { posts }, // will be passed to the page component as props

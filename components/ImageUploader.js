@@ -44,7 +44,6 @@ export default function ImageUploader(props) {
 
     const updatePic = async () => {
         const userRef = firestore.collection('users').doc(auth.currentUser.uid);
-        console.log(PicURL)
         await userRef.update({
             photoURL: PicURL
         });

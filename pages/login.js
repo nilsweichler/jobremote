@@ -68,7 +68,7 @@ function SignInWithUserAndPass(e) {
         </div>
         <button className="btn-login" disabled={loading}>Login</button>
         <div className="text-links">
-            <Link href="/register"><div><span>Noch kein Account?</span> Registrieren</div></Link>
+            <Link href="/register"><div className="clickable-text"><span>Noch kein Account?</span> Registrieren</div></Link>
             <Link href="/resetpw">Passwort vergessen?</Link>
         </div>
     </form>
@@ -171,7 +171,6 @@ export function CompanyForm() {
             setLoading(true);
             setIsValid(false);
         }
-        console.log(formValue)
     }
 
     useEffect(() => {
@@ -186,7 +185,6 @@ export function CompanyForm() {
             if (company.length >= 3) {
                 const ref = firestore.doc(`companies/${company}`);
                 const { exists } = await ref.get();
-                console.log('Firestore read executed!');
                 setIsValid(!exists);
                 setLoading(false);
             }

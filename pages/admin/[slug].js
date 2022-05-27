@@ -63,7 +63,6 @@ function PostForm({ defaultValues, postRef }) {
     const [country, setCountry] = useState(defaultValues.companyCountry);
 
     const updatePost = async ({ info, published }) => {
-        console.log(info)
         await postRef.update({
             info: info,
             profile: profile,
@@ -82,7 +81,6 @@ function PostForm({ defaultValues, postRef }) {
 
     useEffect(() => {
         setEditorLoaded(true);
-        console.log(jobType);
     }, []);
 
     return (

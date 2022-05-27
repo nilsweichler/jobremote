@@ -36,7 +36,6 @@ function RegisterWithUserAndPass(e) {
 
     const registerWithPass = async (e) => {
         e.preventDefault();
-        console.log(email.current.value);
         if(password.current.value !== repeatedPassword.current.value) {
             toast.error('Passwords are not the same!')
         } else {
