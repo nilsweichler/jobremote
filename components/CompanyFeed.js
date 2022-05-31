@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import slugify from "slugify";
 import { useState, useEffect } from 'react';
-import { firestore } from '../lib/firebase';
+import {auth, firestore} from '../lib/firebase';
 import * as IOIcons from 'react-icons/io';
 import toast from "react-hot-toast";
 
@@ -16,6 +16,13 @@ function PostItem({ post, admin = false, superAdmin = false }) {
 
     const [user, setUser] = useState(null);
     const postinfo = post?.info.replace(/(<([^>]+)>)/gi, " ").slice(0, 88) + '...';
+
+    //delete post
+    const deletePost = async () => {
+        const postRef = firestore.collection('users').doc(auth.currentUser.uid).collection('jobs').doc(post.slug);
+        await postRef.delete();
+        toast.success("Post deleted successfully");
+    }
 
         useEffect(() => {
         if (post?.company) {
@@ -88,6 +95,7 @@ function PostItem({ post, admin = false, superAdmin = false }) {
                             <Link href={`/admin/${post.slug}`}>
                                 <a className="admin-edit"><IOIcons.IoMdCreate/></a>
                             </Link>
+                            <button onClick={deletePost}>Löschen</button>
                             {post.published ? <p className="text-success">Live</p> : <p className="text-danger">Unpublished</p>}
                         </div>
                     )}
