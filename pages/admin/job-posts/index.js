@@ -14,8 +14,24 @@ import Metatags from "../../../components/Metatags";
 import { useCollection } from 'react-firebase-hooks/firestore';
 import slugify from 'slugify';
 import toast from 'react-hot-toast';
+import Modal from 'react-modal';
 
 import debounce from 'lodash.debounce';
+
+const customStyles = {
+    content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        background: 'var(--color-bg)',
+        transform: 'translate(-50%, -50%)',
+        border: 'none',
+        borderRadius: '8px',
+        boxShadow: '0 0 20px rgba(0,0,0,0.1)',
+    },
+};
 
 export default function JobPostsPage() {
     return (
@@ -23,10 +39,14 @@ export default function JobPostsPage() {
         <Sidebar activePath='/admin/job-posts'></Sidebar>
         <main className='withSidebar'>
             <Metatags title="Job Posts"></Metatags>
-            <h1>Job Posts</h1>
+            <div class="post-add">
+                <h1>Job Posts</h1>
+                <AuthCheck>
+                    <CreateNewPost />
+                </AuthCheck>
+            </div>
             <AuthCheck>
                 <PostList/>
-                <CreateNewPost />
             </AuthCheck>
         </main>
         </>
@@ -43,7 +63,6 @@ function PostList() {
 
     return (
         <>
-            <h1>Manage your Posts</h1>
             <div className="grid-container">
                 <CompanyFeed posts={posts} admin />
             </div>
@@ -65,6 +84,8 @@ function CreateNewPost() {
     //Check if slug is unique
     const [isUnique, setIsUnique] = useState(false);
     const [loading, setLoading] = useState(false);
+
+    const [modalIsOpen, setModalIsOpen] = useState(false);
 
     // Create a new post in firestore
     const createPost = async (e) => {
@@ -102,20 +123,39 @@ function CreateNewPost() {
 
     };
 
+    function openModal() {
+        setModalIsOpen(true);
+    }
+
+    function afterOpenModal() {
+
+    }
+
+    function closeModal() {
+        setModalIsOpen(false);
+    }
+
     return (
-        <form onSubmit={createPost}>
-            <input
-                value={title}
-                onChange={(e) => {setTitle(e.target.value)}}
-                placeholder="Jobbezeichnung"
-                className={styles.input}
-            />
-            <p>
-                <strong>Slug:</strong> {slug}
-            </p>
-            <button type="submit" disabled={!isValid} className="btn-green">
-                Create New Post
-            </button>
-        </form>
+        <>
+            <a onClick={openModal} className="add-button">+</a>
+            <Modal isOpen={modalIsOpen} onAfterOpen={afterOpenModal} onRequestClose={closeModal} style={customStyles} shouldCloseOnOverlayClick={true}>
+                <a className="close" onClick={closeModal}>&times;</a>
+                <form onSubmit={createPost}>
+                    <h2>Job Titel eingeben:</h2>
+                    <input
+                        value={title}
+                        onChange={(e) => {setTitle(e.target.value)}}
+                        placeholder="Jobbezeichnung"
+                        className={styles.input}
+                    />
+                    <p>
+                        <strong>Slug:</strong> {slug}
+                    </p>
+                    <button type="submit" disabled={!isValid} className="btn-green">
+                        Create New Post
+                    </button>
+                </form>
+            </Modal>
+        </>
     );
 }

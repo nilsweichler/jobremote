@@ -42,14 +42,6 @@ export default function Sidebar({activePath}) {
     }, 500);
   }
 
-  const signOutNav =  () => {
-    router.push('/');
-    //timeout the signout to make sure the user sees the loading screen
-    setTimeout(() => {
-      auth.signOut();
-    }, 500);
-  }
-
   return (
     <>
     <IconContext.Provider value={{color: '#000'}}>
@@ -67,10 +59,10 @@ export default function Sidebar({activePath}) {
                   <a href={`/${slugify(company.toLowerCase())}`} className="submenu-link"><img className="avatar" src={user?.photoURL || "hacker.png"} /><p>{company}</p></a>
                 </li>
                 <li>
-                  <a href="/settings" className="submenu-link">Einstellungen</a>
+                  <a href="/settings" className="submenu-link"><AiIcons.AiFillSetting/>Einstellungen</a>
                 </li>
                 <li>
-                  <a onClick={signOutNav} href="" className="submenu-logout">Ausloggen</a>
+                  <a onClick={signOut} className="submenu-link"><IoIcons.IoIosLogOut/><span>Logout</span></a>
                 </li>
               </div>
             </div>

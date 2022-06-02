@@ -75,10 +75,10 @@ export default function Navbar() {
                   </div>
                 </li>
                 <li>
-                  <a href="/settings" className="submenu-link">Einstellungen</a>
+                  <a href="/settings" className="submenu-link"><AiIcons.AiFillSetting/>Einstellungen</a>
                 </li>
                 <li>
-                  <a onClick={signOut} href="" className="submenu-logout">Ausloggen</a>
+                  <a onClick={signOut} className="submenu-link"><IoIcons.IoIosLogOut/>Ausloggen</a>
                 </li>
               </div>
             </div>
