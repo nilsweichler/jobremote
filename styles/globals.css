@@ -57,6 +57,7 @@ a:hover {
 
 p {
   font-family: 'Montserrat', sans-serif;
+  line-height: 1.5;
 }
 
 * {
@@ -278,6 +279,21 @@ footer {
   border-radius: 4px;
 }
 
+.card-info p {
+  margin: 0;
+}
+
+.trash-button {
+  background-color: var(--color-red);
+  margin: 0 0 0 10px;
+  padding: 5px;
+}
+
+.trash-button svg {
+  width: 20px;
+  height: auto;
+}
+
 @media only screen and (max-width: 768px) {
   button {
     padding: 0.5rem 1rem;
@@ -368,6 +384,7 @@ footer {
 .card-info {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .card-text h3 {
@@ -418,8 +435,8 @@ footer {
 
 .card .card-time-text {
   color: #DDDEDF;
-  margin: 0;
   font-size: 13px;
+  margin: 0 0 0 5px;
 }
 
 .card-time-icon {

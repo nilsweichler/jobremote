@@ -17,6 +17,8 @@ function PostItem({ post, admin = false, superAdmin = false }) {
     const [user, setUser] = useState(null);
     const postinfo = post?.info.replace(/(<([^>]+)>)/gi, " ").slice(0, 88) + '...';
 
+    console.log(post);
+
     //delete post
     const deletePost = async () => {
         const postRef = firestore.collection('users').doc(auth.currentUser.uid).collection('jobs').doc(post.slug);
@@ -56,14 +58,24 @@ function PostItem({ post, admin = false, superAdmin = false }) {
                                 Mid-Level
                             </div>
                         </div>
+                        {!admin &&
                         <div className="card-time">
-                            <span className="card-time-icon">
+
+                                <span className="card-time-icon">
                                 <IOIcons.IoIosTime color="#DDDEDF"/>
                             </span>
-                            <span className="card-time-text">
-                                {timeSince(post.createdAt)}
-                            </span>
+                                <span className="card-time-text">
+                            {(timeSince(post.createdAt))}
+                                </span>
                         </div>
+                        }
+                        {admin && (
+                            <div className="card-info">
+                            {post.published ? <p className="text-success">Live</p> : <p className="text-danger">Unpublished</p>}
+                                <button className="trash-button" onClick={deletePost}><IOIcons.IoIosTrash/></button>
+                            </div>
+                        )
+                        }
                     </div>
                     <div className="card-text">
                         <Link href={`/${slugify(post.company.toLowerCase())}/${post.slug}`}>
@@ -95,8 +107,6 @@ function PostItem({ post, admin = false, superAdmin = false }) {
                             <Link href={`/admin/${post.slug}`}>
                                 <a className="admin-edit"><IOIcons.IoMdCreate/></a>
                             </Link>
-                            <button onClick={deletePost}>Löschen</button>
-                            {post.published ? <p className="text-success">Live</p> : <p className="text-danger">Unpublished</p>}
                         </div>
                     )}
                     {/* if superadmin*/}
@@ -122,9 +132,6 @@ function PostItem({ post, admin = false, superAdmin = false }) {
 function timeSince(date) {
     let seconds = Math.floor((new Date() - date) / 1000);
     let interval = Math.floor(seconds / 31536000);
-    if (interval > 1) {
-        return interval + "y";
-    }
     interval = Math.floor(seconds / 86400);
     if (interval > 1) {
         return interval + "d";
@@ -137,5 +144,5 @@ function timeSince(date) {
     if (interval > 1) {
         return interval + "min";
     }
-    return Math.floor(seconds) + " seconds";
+    return Math.floor(seconds) + " sec";
 }

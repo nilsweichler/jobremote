@@ -49,7 +49,7 @@ export default function PostContent({ post }) {
                 </div>
                 <div className="post">
                     <div className="post-header">
-                        <img className="post-image" src={user?.photoURL} alt={post?.company} />
+                        <img className="post-image" src={user?.photoURL || 'https://res.cloudinary.com/casinowitch/image/upload/v1656333649/hacker_tet1io.png'} alt={post?.company} />
                         <div className="post-header-info">
                             <h1>{post?.title}</h1>
                             <div className="post-header-info-tags">
@@ -84,7 +84,7 @@ export default function PostContent({ post }) {
                         <p style={{marginBottom: 5 + 'px'}}>{post?.contactPerson}</p>
                         <p>{post?.contactEmail}</p>
                     </div>
-                    <Link href={user?.companyURL || post?.contactEmail}><button>Jetzt Bewerben</button></Link>
+                    <Link href={user?.companyURL || 'mailto:' + post?.contactEmail || '#'}><button>Jetzt Bewerben</button></Link>
                 </div>
             </aside>
         </div>
