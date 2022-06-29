@@ -58,23 +58,27 @@ function PostForm({ defaultValues, postRef }) {
     const [info, setInfo] = useState(defaultValues.info);
     const [profile, setProfile] = useState(defaultValues.profile);
     const [tasks, setTasks] = useState(defaultValues.tasks);
+    const [benefits, setBenefits] = useState(defaultValues.benefits);
     const [jobType, setType] = useState(defaultValues.type);
     const [city, setCity] = useState(defaultValues.companyCity);
     const [country, setCountry] = useState(defaultValues.companyCountry);
+    const [contactPerson, setContactPerson] = useState(defaultValues.contactPerson);
+    const [contactEmail, setContactEmail] = useState(defaultValues.contactEmail);
 
-    const updatePost = async ({ info, published }) => {
+    const updatePost = async () => {
         await postRef.update({
             info: info,
             profile: profile,
             tasks: tasks,
+            benefits: benefits,
             type: jobType,
             companyCity: city,
             companyCountry: country,
-            published,
+            contactPerson: contactPerson,
+            contactEmail: contactEmail,
+            published: false,
             updatedAt: serverTimestamp(),
         });
-
-        reset({ info, published });
 
         toast.success('Post updated successfully!')
     };
@@ -95,6 +99,9 @@ function PostForm({ defaultValues, postRef }) {
                 <h2>Tasks</h2>
                 <Editor name="tasksText" onChange={(tasks) => {setTasks(tasks);}} editorLoaded={editorLoaded} value={defaultValues.tasks}></Editor>
 
+                <h2>Benefits</h2>
+                <Editor name="benefitsText" onChange={(benefits) => {setBenefits(benefits);}} editorLoaded={editorLoaded} value={defaultValues.benefits}></Editor>
+
                 <h2>Type</h2>
                 <select name="type" defaultValue={defaultValues.type} onChange={(jobType) => {setType(jobType.target.value);}} required>
                     <option value="">Select a category</option>
@@ -108,6 +115,9 @@ function PostForm({ defaultValues, postRef }) {
                 <input name="companyCity" placeholder="City" onChange={(city) => {setCity(city.target.value);}} defaultValue={defaultValues.companyCity} required/>
                 <input name="companyCountry" placeholder="Country" onChange={(country) => {setCountry(country.target.value);}} defaultValue={defaultValues.companyCountry} required/>
 
+                <h2>Contact Person</h2>
+                <input name="contact" placeholder="Contact Person" onChange={(contact) => {setContactPerson(contact.target.value);}} defaultValue={defaultValues.contactPerson} required/>
+                <input name="contact-mail" type="email" placeholder="Contact Person Email" onChange={(contact) => {setContactEmail(contact.target.value);}} defaultValue={defaultValues.contactEmail} required/>
 
                 <button type="submit" className="btn-green">
                     Save Changes

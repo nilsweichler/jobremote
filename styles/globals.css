@@ -51,6 +51,10 @@ a {
   cursor: pointer;
 }
 
+a:hover {
+  color: rgba(60, 64, 68, 0.7);
+}
+
 p {
   font-family: 'Montserrat', sans-serif;
 }
@@ -74,8 +78,7 @@ input {
   font-size: 1.5rem;
   width: 100%;
   padding: 5px 10px;
-  background-color: var(--color-text);
-  color: var(--color-bg);
+  color: var(--color-text);
 }
 
 fieldset {
@@ -127,6 +130,8 @@ code {
   width: 50px;
   height: 50px;
   cursor: pointer;
+  background-color: white;
+  object-fit: contain;
 }
 
 .subnav li {
@@ -137,6 +142,11 @@ code {
   align-items: center;
   justify-content: space-between;
   height: 100%;
+}
+
+.submenu-link {
+  display: flex;
+  align-items: center;
 }
 
 .submenu-link span {
@@ -160,6 +170,8 @@ code {
   width: 50px;
   height: 50px;
   cursor: pointer;
+  background-color: white;
+  object-fit: contain;
 }
 
 .subnavbtn {
@@ -207,6 +219,14 @@ code {
 
 .subnav-content li:hover:not(:first-child) {
   background-color: var(--color-blue);
+  color: white;
+}
+
+.subnav-content a:hover:first-child {
+  color: inherit;
+}
+
+.subnav-content a:hover {
   color: white;
 }
 
@@ -806,6 +826,156 @@ span {
   margin-top: 50px;
 }
 
+/* Post */
+.post {
+  box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.1);
+  padding: 40px;
+  background-color: var(--color-bg);
+}
+
+.post li {
+  margin-left: 30px;
+}
+
+.breadcrumb {
+  color: rgba(255, 255, 255, 0.75);
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.breadcrumb span {
+  margin: 0 5px;
+}
+
+.post-header {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--color-blue-gray);
+  padding-bottom: 40px;
+  margin-bottom: 40px;
+}
+
+.post-header-info {
+  display: flex;
+  flex-direction: column;
+  margin-left: 40px;
+}
+
+.post-header-info h1 {
+  margin: 0;
+  margin-bottom: 18px;
+}
+
+.post-header-info-tags {
+  display: flex;
+}
+
+.post-header-info-tags svg {
+  margin-right: 5px;
+}
+
+.post-header-info-ort {
+  margin-right: 20px;
+}
+
+.post-image {
+  width: 10rem;
+  border-radius: 10px;
+  background-color: white;
+  height: 10rem;
+  object-fit: contain;
+}
+
+.post-sidebar {
+    display: flex;
+    flex-direction: column;
+  align-items: flex-start;
+    width: 100%;
+    background-color: var(--color-bg);
+    padding: 20px;
+    position: relative;
+    box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.1);
+}
+
+.post-sidebar-tag {
+display: flex;
+  flex-direction: column;
+    align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.post-sidebar button {
+  width: 100%;
+}
+
+.post-sidebar h2 {
+  margin-bottom: 20px;
+}
+
+.post-sidebar h3 {
+  margin: 0 0 5px;
+}
+
+.post-sidebar p {
+  margin: 0;
+}
+
+@media screen and (max-width: 1280px) {
+  .post {
+    padding: 20px;
+  }
+
+  .post-header {
+    flex-direction: column;
+  }
+
+  .post-header .post-header-info {
+    margin-left: 0;
+    margin-top: 20px;
+    align-items: center;
+  }
+
+  .sidebar {
+    padding: 0 3vw;
+  }
+
+  .withSidebar {
+    margin-left: 0;
+  }
+
+  .MuiGrid-item {
+    margin-bottom: 25px !important;
+  }
+
+}
+
+/* Mobile Responsiveness */
+@media screen and (max-width: 768px) {
+  main {
+    padding: 1rem 3vw;
+  }
+
+  .footer-container {
+    flex-direction: column;
+  }
+
+  .navbar {
+    padding: 0 3vw;
+  }
+
+  .navbar .push-left .btn-blue {
+    display: none;
+  }
+
+  .sidebar .btn-logo {
+    margin: 0;
+  }
+
+  .subnav-content {
+    right: 0;
+  }
+}
+
 
 
 /* if sidebar footer */
@@ -822,6 +992,11 @@ span {
     --color-blue-gray: #707d93;
     --color-dark: #1F2340;
 }
+
+[data-theme='dark'] a:hover {
+  color: rgba(255, 255, 255, 0.75);
+}
+
 [data-theme='dark'] .card-tag {
     color: white;
     background-color: var(--color-blue);
@@ -838,6 +1013,15 @@ span {
   fill: white;
   }
 
+[data-theme='dark'] input {
+  background-color: var(--color-bg);
+  color: white;
+}
+
+[data-theme='dark'] ::placeholder {
+  color: white;
+}
+
 [data-theme='dark'] .submenu-link svg {
   fill: white;
 }
@@ -849,6 +1033,10 @@ span {
 [data-theme='dark'] .login-logo {
     filter: invert(94%) sepia(0%) saturate(5760%) hue-rotate(339deg) brightness(300%) saturate(0%);
   }
+
+[data-theme='dark'] .menu-bars-burger svg {
+  filter: invert(100%);
+}
 
 [data-theme='dark'] .sidebar .nav-text svg {
     filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(73deg) brightness(102%) contrast(102%)

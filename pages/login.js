@@ -26,7 +26,7 @@ export default function LoginPage(props) {
     <main>
         <div className="loginWrapper">
             <Link href="/">
-                <img className="login-logo" src="jobremote-logo.svg" />
+                <img className="login-logo" src="https://res.cloudinary.com/casinowitch/image/upload/v1656333561/jobremote-logo_rusnvs.svg" />
             </Link>
             <h1>Login</h1>
             {user && !company ? null : <SignInGithubButton/> }
@@ -134,6 +134,7 @@ export function CompanyForm() {
     const [loading, setLoading] = useState(false);
 
     const {user, company} = useContext(UserContext)
+    const [companyURL, setCompanyURL] = useState('');
 
     const router = useRouter();
 
@@ -147,7 +148,7 @@ export function CompanyForm() {
 
         // Commit both docs together as a batch write.
         const batch = firestore.batch();
-        batch.set(userDoc, { company: formValue.toLowerCase(), companyInfo: "", photoURL: user.photoURL, displayName: user.displayName, admin: false });
+        batch.set(userDoc, { company: formValue.toLowerCase(), companyInfo: "", companyURL: companyURL,photoURL: user.photoURL, displayName: user.displayName, admin: false });
         batch.set(companyDoc, { uid: user.uid });
 
         await batch.commit();
@@ -199,6 +200,7 @@ export function CompanyForm() {
                 <form onSubmit={onSubmit}>
                     <input name="company" placeholder="Firmenname" value={formValue} onChange={onChanging}/>
                     <UsernameMessage username={formValue} isValid={isValid} loading={loading} />
+                    <input name="company-url" type="url" placeholder="Firmen-URL" onChange={(companyURL) => {setCompanyURL(companyURL.target.value);}}/>
                     <button className="btn-login" type="submit" disabled={!isValid}>
                         Auswählen
                     </button>

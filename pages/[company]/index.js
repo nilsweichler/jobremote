@@ -44,7 +44,7 @@ export default function CompanyPage({ user, posts }) {
         <main>
             <Metatags title={user.company + " Profile Page"} />
         <CompanyProfile user={user}></CompanyProfile>
-            <div class="grid-container">
+            <div className="grid-container">
                 <CompanyFeed posts={posts}></CompanyFeed>
             </div>
         </main>

@@ -39,7 +39,7 @@ export default function JobPostsPage() {
         <Sidebar activePath='/admin/job-posts'></Sidebar>
         <main className='withSidebar'>
             <Metatags title="Job Posts"></Metatags>
-            <div class="post-add">
+            <div className="post-add">
                 <h1>Job Posts</h1>
                 <AuthCheck>
                     <CreateNewPost />
@@ -109,7 +109,8 @@ function CreateNewPost() {
             type: '',
             category: '',
             entry: '',
-            contact: [],
+            contactPerson: '',
+            contactEmail: '',
             createdAt: serverTimestamp(),
             updatedAt: serverTimestamp(),
         };

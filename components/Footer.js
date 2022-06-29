@@ -9,7 +9,7 @@ export default function Footer() {
             <div className="footer-logo">
                 <Link href="/">
                     <a>
-                        <img src="jobremote-logo.svg" />
+                        <img src="https://res.cloudinary.com/casinowitch/image/upload/v1656333561/jobremote-logo_rusnvs.svg" />
                     </a>
                 </Link>
             </div>

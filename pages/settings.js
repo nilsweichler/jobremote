@@ -5,12 +5,18 @@ import {UserContext} from "../lib/context";
 import toast from "react-hot-toast";
 import Loader from "../components/Loader";
 import Sidebar from '../components/Sidebar';
+import Switch from "react-switch";
+import * as IoIcons from "react-icons/io";
+import {useTheme} from "next-themes";
 
 
 export default function Settings() {
     const [user, setUser] = useState(null);
     
     const userContext = useContext(UserContext);
+
+    const { theme, setTheme } = useTheme()
+    const [checked, setChecked] = useState(false);
     
     useEffect(() => {
         if(auth.currentUser){
@@ -41,9 +47,11 @@ export default function Settings() {
     const changeCompanyInfo = (e) => {
         e.preventDefault();
         let companyInfo = document.getElementById("companyInfo").value;
+        let companyURL = document.getElementById("companyURL").value;
         const postRef = firestore.collection('users').doc(auth.currentUser.uid);
         postRef.update({
-            companyInfo: companyInfo
+            companyInfo: companyInfo,
+            companyURL: companyURL
         }).then(() => {
             toast.success("Company info changed successfully");
         }).catch(error => {
@@ -51,7 +59,11 @@ export default function Settings() {
         });
     }
 
-    
+
+    const handleChange = () => {
+        setChecked(!checked);
+        setTheme(theme === 'light' ? 'dark' : 'light')
+    }
 
     return (
         <>
@@ -63,11 +75,12 @@ export default function Settings() {
                 <div className="settings">
                     <h1>Settings</h1>
                     {user?.admin ? <p>Du bist ein Admin</p> : <p>Du bist kein Admin</p>}
-                    <img src={user?.photoURL || "hacker.png" } alt="profile picture" className="card-img-center"/>
+                    <img src={user?.photoURL || "https://res.cloudinary.com/casinowitch/image/upload/v1656333649/hacker_tet1io.png.png" } alt="profile picture" className="card-img-center"/>
                     <ImageUploader user={user}/>
                     <form onSubmit={changeCompanyInfo}>
                         <label>Change Company Info</label>
                         <textarea id="companyInfo" defaultValue={user?.companyInfo}></textarea>
+                        <input id="companyURL" type="url" placeholder="Firmen-URL" defaultValue={user?.companyURL}></input>
                         <button type="submit" className="btn btn-primary">Speichern</button>
                     </form>
                 </div>
@@ -85,6 +98,25 @@ export default function Settings() {
                         <button type="submit" className="btn btn-primary">Change Password</button>
                     </form>
                 </div>
+                        <div>
+                            <label>
+                                <Switch offColor="#503AE2" onColor="#503AE2" uncheckedIcon={<IoIcons.IoIosSunny style={{
+                                    display: "flex",
+                                    justifyContent: "center",
+                                    alignItems: "center",
+                                    height: "100%",
+                                    fontSize: 25,
+                                    color: "yellow",
+                                }}/>} checkedIcon={<IoIcons.IoIosMoon style={{
+                                    display: "flex",
+                                    justifyContent: "center",
+                                    alignItems: "center",
+                                    height: "100%",
+                                    fontSize: 25,
+                                    color: "yellow",
+                                }}/>} onChange={handleChange} checked={checked} />
+                            </label>
+                        </div>
                 </div>
                 )}
             </main>

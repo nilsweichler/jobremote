@@ -1,5 +1,5 @@
-import styles from '../../styles/Post.module.css';
 import PostContent from '../../components/PostContent';
+import styles from '/styles/Post.module.css';
 import { firestore, getUserWithCompany, postToJSON } from '../../lib/firebase';
 import { useDocumentData } from 'react-firebase-hooks/firestore';
 import Metatags from "../../components/Metatags";
@@ -57,9 +57,7 @@ export default function JobPosting(props) {
         <Navbar></Navbar>
         <main className={styles.container}>
           <Metatags title={post.title} description={post.info} />
-          <section>
-            <PostContent post={post}></PostContent>
-          </section>
+          <PostContent post={post}></PostContent>
         </main>
         <Footer></Footer>
       </>

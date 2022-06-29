@@ -14,8 +14,22 @@ import AdminCheck from '../components/AdminCheck';
 
 export default function Sidebar({activePath}) {
   const {user, company} = useContext(UserContext);
-  const [sidebar, setSidebar] = useState(true);
+  const [sidebar, setSidebar] = useState(false);
   const [jobCount, setJobCount] = useState(0);
+
+  const [userData, setUserData] = useState(null);
+
+  useEffect(() => {
+        if(user) {
+          firestore.collection('users').doc(user.uid).get().then(doc => {
+            setUserData(doc.data());
+          }).catch(err => {
+            console.log(err);
+          });
+        }
+      }
+      , [user]);
+
 
   useEffect(() => {
     if(user) {
@@ -48,15 +62,18 @@ export default function Sidebar({activePath}) {
         <div className="sidebar">
           <a className={sidebar ? 'menu-bars-burger active' : 'menu-bars-burger'}><FaIcons.FaBars onClick={toggleSidebar}/></a>
           <Link href="/">
-            <button className="btn-logo"><img src="jobremote-logo.svg"/></button>
+            <button className="btn-logo"><img src="https://res.cloudinary.com/casinowitch/image/upload/v1656333561/jobremote-logo_rusnvs.svg"/></button>
           </Link>
           {company && (
           <>
             <div className="subnav">
-              <button className="subnavbtn"><img className="avatar" src={user?.photoURL || "hacker.png"} /></button>
+              <button className="subnavbtn"><img className="avatar" src={userData?.photoURL || "https://res.cloudinary.com/casinowitch/image/upload/v1656333649/hacker_tet1io.png"} /></button>
               <div className="subnav-content">
                 <li>
-                  <a href={`/${slugify(company.toLowerCase())}`} className="submenu-link"><img className="avatar" src={user?.photoURL || "hacker.png"} /><p>{company}</p></a>
+                  <a href={`/${slugify(company.toLowerCase())}`} className="submenu-link"><img className="avatar" src={userData?.photoURL || "https://res.cloudinary.com/casinowitch/image/upload/v1656333649/hacker_tet1io.png"} /><p>{company}</p></a>
+                </li>
+                <li>
+                  <a href="/admin" className="submenu-link"><AiIcons.AiFillHome/>Dashboard</a>
                 </li>
                 <li>
                   <a href="/settings" className="submenu-link"><AiIcons.AiFillSetting/>Einstellungen</a>
