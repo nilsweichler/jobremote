@@ -8,6 +8,7 @@ import Sidebar from '../components/Sidebar';
 import Switch from "react-switch";
 import * as IoIcons from "react-icons/io";
 import {useTheme} from "next-themes";
+import Metatags from "../components/Metatags";
 
 
 export default function Settings() {
@@ -67,25 +68,28 @@ export default function Settings() {
 
     return (
         <>
+            <Metatags title="Jobremote.io | Settings"/>
             <Sidebar activePath='/settings'></Sidebar>
             <main className="withSidebar">
                 {!user && <Loader show={true}/>}
                 {user && (
-                <div>
+                <div className="settings-container">
                 <div className="settings">
                     <h1>Settings</h1>
-                    {user?.admin ? <p>Du bist ein Admin</p> : <p>Du bist kein Admin</p>}
-                    <img src={user?.photoURL || "https://res.cloudinary.com/casinowitch/image/upload/v1656333649/hacker_tet1io.png.png" } alt="profile picture" className="card-img-center"/>
-                    <ImageUploader user={user}/>
+                    <div className="image-upload">
+                        <img src={user?.photoURL || "https://res.cloudinary.com/casinowitch/image/upload/v1656333649/hacker_tet1io.png.png" } alt="profile picture" className="card-img-center"/>
+                        <ImageUploader user={user}/>
+                    </div>
                     <form onSubmit={changeCompanyInfo}>
                         <label>Change Company Info</label>
                         <textarea id="companyInfo" defaultValue={user?.companyInfo}></textarea>
+                        <label>Company URL</label>
                         <input id="companyURL" type="url" placeholder="Firmen-URL" defaultValue={user?.companyURL}></input>
                         <button type="submit" className="btn btn-primary">Speichern</button>
                     </form>
                 </div>
                 <div className="password-change">
-                    <h2>Change Password</h2>
+                    <h2>Passwort ändern</h2>
                     <form onSubmit={changePassword}>
                         <div className="form-group">
                             <label htmlFor="password">New Password</label>
@@ -95,10 +99,11 @@ export default function Settings() {
                             <label htmlFor="confirmPassword">Confirm Password</label>
                             <input type="password" className="form-control" id="confirmPassword" placeholder="Confirm Password"/>
                         </div>
-                        <button type="submit" className="btn btn-primary">Change Password</button>
+                        <button type="submit" className="btn btn-primary">Ändere Passwort</button>
                     </form>
                 </div>
-                        <div>
+                        <div className="switch-container">
+                            <label>Sie mögen ein anderes Farbschema? Dann:</label>
                             <label>
                                 <Switch offColor="#503AE2" onColor="#503AE2" uncheckedIcon={<IoIcons.IoIosSunny style={{
                                     display: "flex",

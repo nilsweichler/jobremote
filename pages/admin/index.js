@@ -9,11 +9,13 @@ import GridContainer from "../../components/ui-library/Grid/GridContainer";
 import GridItem from "../../components/ui-library/Grid/GridItem";
 
 import * as FaIcons from 'react-icons/fa';
+import Metatags from "../../components/Metatags";
 
 export default function AdminPostsPage(props) {
 
     return (
         <>
+            <Metatags title="Jobremote.io | Dashboard"/>
             <Sidebar activePath='/admin'></Sidebar>
             <main className='withSidebar'>
                 <AuthCheck>

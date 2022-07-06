@@ -8,6 +8,7 @@ import {useState} from "react";
 import Navbar from '../components/Navbar'
 import Footer from "../components/Footer";
 import {useTheme} from "next-themes";
+import Metatags from "../components/Metatags";
 
 
 // Max post to query per page
@@ -61,6 +62,7 @@ export default function Home(props) {
 
   return (
       <>
+          <Metatags title="Jobremote.io | Entdecke hunderte Remote Jobs" description="Das ist ein Portfolioprojekt von Nils Weichler. Wenn Sie mehr über mich erfahren wollen, besuchen Sie nils-weichler.com." image="Meta-Image.png"/>
         <Navbar></Navbar>
           <section className={styles.heroSection}>
               <div className={styles.heroText}>
@@ -79,9 +81,11 @@ export default function Home(props) {
                   <div className='grid-container'>
                     <CompanyFeed posts={posts} />
                   </div>
+                  <div className="load-center">
                       <Loader show={loading} />
                       {!loading && !postsEnd && <button onClick={getMorePosts}>Mehr laden</button>}
                       {postsEnd && 'Du hast das Ende erreicht!'}
+                  </div>
               </div>
           </main>
           <Footer></Footer>

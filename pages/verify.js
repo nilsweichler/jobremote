@@ -7,6 +7,7 @@ import CompanyFeed from "../components/CompanyFeed";
 import AdminCheck from "../components/AdminCheck";
 import {UserContext} from "../lib/context";
 import Router from "next/router";
+import Metatags from "../components/Metatags";
 
 export async function getServerSideProps(context) {
     const postsQuery = firestore
@@ -29,6 +30,7 @@ export default function Verify(props) {
 
     return (
         <>
+            <Metatags title="Jobremote.io | Verify"/>
             <Sidebar activePath='/verify'></Sidebar>
             <AdminCheck admin={true}>
                 <main className="withSidebar">

@@ -52,11 +52,42 @@ export default function JobPosting(props) {
 
   const post = realtimePost ||props.post;
 
+  let date = new Date(post.createdAt.seconds * 1000);
+
+  let jsonData = {
+    "@context": "http://schema.org",
+    "@type": "JobPosting",
+    "title": post.title,
+    "description": post.info,
+    "datePosted": date,
+    "employmentType": post.type,
+    "hiringOrganization": {
+        "@type": "Organization",
+        "name": post.company,
+        "sameAs": "https://www.google.com/search?q=" + post.company,
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.google.com/search?q=" + post.company,
+        },
+    },
+    "jobLocation": {
+        "@type": "Place",
+        "name": post.companyCity,
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": post.companyCity,
+            "addressCountry": post.companyCountry,
+        }
+    }
+  }
+
+  //String to date
+
   return (
       <>
         <Navbar></Navbar>
         <main className={styles.container}>
-          <Metatags title={post.title} description={post.info} />
+          <Metatags title={post.title} description={post.info} image="Meta-Image.png" jsonData={jsonData}/>
           <PostContent post={post}></PostContent>
         </main>
         <Footer></Footer>

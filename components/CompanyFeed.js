@@ -42,7 +42,7 @@ function PostItem({ post, admin = false, superAdmin = false }) {
                 <div className="card">
                     <div className="card-header">
                         <div className="card-header-image">
-                            <Link href={`/${slugify(post.company.toLowerCase())}/${post.slug}`}>
+                            <Link href={`/${slugify(post.company.toLowerCase())}`}>
                                 <a>
                                     <img src={user?.photoURL || 'hacker.png'} alt={post.company} />
                                 </a>

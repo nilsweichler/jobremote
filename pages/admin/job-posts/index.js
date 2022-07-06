@@ -38,7 +38,7 @@ export default function JobPostsPage() {
         <>
         <Sidebar activePath='/admin/job-posts'></Sidebar>
         <main className='withSidebar'>
-            <Metatags title="Job Posts"></Metatags>
+            <Metatags title="Jobremote.io | Job Posts"></Metatags>
             <div className="post-add">
                 <h1>Job Posts</h1>
                 <AuthCheck>

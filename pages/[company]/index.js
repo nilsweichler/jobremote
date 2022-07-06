@@ -40,9 +40,9 @@ export async function getServerSideProps({ query }) {
 export default function CompanyPage({ user, posts }) {
   return (
     <>
+        <Metatags title={"Jobremote.io | " + user.company} />
         <Navbar></Navbar>
         <main>
-            <Metatags title={user.company + " Profile Page"} />
         <CompanyProfile user={user}></CompanyProfile>
             <div className="grid-container">
                 <CompanyFeed posts={posts}></CompanyFeed>

@@ -12,6 +12,7 @@ import toast from "react-hot-toast";
 
 import ReactMarkdown from 'react-markdown';
 import Sidebar from '../../components/Sidebar';
+import Metatags from "../../components/Metatags";
 
 export default function JobPostEdit(props) {
     return (
@@ -32,6 +33,7 @@ function PostManager() {
 
     return (
         <>
+            <Metatags title="Jobremote.io | Edit your Job"/>
             <Sidebar></Sidebar>
             <main className='withSidebar'>
                 {post && (
