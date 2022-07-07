@@ -62,7 +62,7 @@ export default function Sidebar({activePath}) {
         <div className="sidebar">
           <a className={sidebar ? 'menu-bars-burger active' : 'menu-bars-burger'}><FaIcons.FaBars onClick={toggleSidebar}/></a>
           <Link href="/">
-            <button className="btn-logo"><img src="https://res.cloudinary.com/casinowitch/image/upload/v1656333561/jobremote-logo_rusnvs.svg"/></button>
+            <button className="btn-logo" alt="Jobremote Logo"><img src="https://res.cloudinary.com/casinowitch/image/upload/v1656333561/jobremote-logo_rusnvs.svg"/></button>
           </Link>
           {company && (
           <>

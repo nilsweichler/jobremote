@@ -73,7 +73,7 @@ export default function PostContent({ post }) {
                     <h2>Fakten</h2>
                     <div className="post-sidebar-tag">
                         <h3>Eintrittstermin</h3>
-                        <p>{post?.entry}</p>
+                        <p>{post?.entry || "Ab sofort"}</p>
                     </div>
                     <div className="post-sidebar-tag">
                         <h3>Anstellungsart</h3>
