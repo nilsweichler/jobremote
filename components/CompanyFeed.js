@@ -52,10 +52,10 @@ function PostItem({ post, admin = false, superAdmin = false }) {
                     <div className="card-info">
                         <div className="card-tags">
                             <div className="card-tag">
-                                Remote
+                                {post.type}
                             </div>
                             <div className="card-tag">
-                                Mid-Level
+                                {post.companyCity}
                             </div>
                         </div>
                         {!admin &&

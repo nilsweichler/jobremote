@@ -9,7 +9,7 @@ export default function Impressum() {
                 title="Impressum"
                 description="Impressum"/>
             <Navbar/>
-            <main>
+            <main className="impressum">
                 <h1>Impressum</h1>
                 <h2>Angaben gemmäß §5 TMG</h2>
                 <p>Nils Weichler</p>

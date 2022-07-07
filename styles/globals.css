@@ -736,6 +736,7 @@ input[type="file"] {
 
 
 
+
 .image-upload .box {
   margin-left: 20px;
 }
@@ -1012,6 +1013,10 @@ display: flex;
 
 .post-sidebar p {
   margin: 0;
+}
+
+.impressum {
+  height: 76vh;
 }
 
 @media screen and (max-width: 1280px) {
