@@ -42,9 +42,6 @@ function PostManager() {
                             <h1>{post.title}</h1>
                             <p>ID: {post.slug}</p>
                             <PostForm postRef={postRef} defaultValues={post} />
-                            <Link href={`/${post.company}/${post.slug}`}>
-                                <button className="btn-blue">Live view</button>
-                            </Link>
                         </section>
                     </>
                 )}
@@ -91,38 +88,38 @@ function PostForm({ defaultValues, postRef }) {
 
     return (
         <form onSubmit={handleSubmit(updatePost)}>
-            <div>
-                <h2>Post Info</h2>
+            <div className="edit-post-container">
+                <h2>Infos über das Unternehmen</h2>
                 <Editor name="infoText" onChange={(info) => {setInfo(info);}} editorLoaded={editorLoaded} value={defaultValues.info}></Editor>
 
-                <h2>Profile</h2>
+                <h2>Profil des Bewerbers</h2>
                 <Editor name="profileText" onChange={(profile) => {setProfile(profile);}} editorLoaded={editorLoaded} value={defaultValues.profile}></Editor>
 
-                <h2>Tasks</h2>
+                <h2>Aufgaben des Bewerbers</h2>
                 <Editor name="tasksText" onChange={(tasks) => {setTasks(tasks);}} editorLoaded={editorLoaded} value={defaultValues.tasks}></Editor>
 
                 <h2>Benefits</h2>
                 <Editor name="benefitsText" onChange={(benefits) => {setBenefits(benefits);}} editorLoaded={editorLoaded} value={defaultValues.benefits}></Editor>
 
-                <h2>Type</h2>
+                <h2>Art der Anstellung</h2>
                 <select name="type" defaultValue={defaultValues.type} onChange={(jobType) => {setType(jobType.target.value);}} required>
-                    <option value="">Select a category</option>
-                    <option value="Fulltime">Fulltime</option>
-                    <option value="Parttime">Parttime</option>
-                    <option value="Internship">Internship</option>
+                    <option value="">Wähle eine Kategorie</option>
+                    <option value="Vollzeit">Vollzeit</option>
+                    <option value="Teilzeit">Teilzeit</option>
+                    <option value="Praktikum">Praktikum</option>
                     <option value="Freelance">Freelance</option>
                 </select>
 
-                <h2>Job Location</h2>
+                <h2>Anstellungsort</h2>
                 <input name="companyCity" placeholder="City" onChange={(city) => {setCity(city.target.value);}} defaultValue={defaultValues.companyCity} required/>
                 <input name="companyCountry" placeholder="Country" onChange={(country) => {setCountry(country.target.value);}} defaultValue={defaultValues.companyCountry} required/>
 
-                <h2>Contact Person</h2>
+                <h2>Kontaktperson</h2>
                 <input name="contact" placeholder="Contact Person" onChange={(contact) => {setContactPerson(contact.target.value);}} defaultValue={defaultValues.contactPerson} required/>
                 <input name="contact-mail" type="email" placeholder="Contact Person Email" onChange={(contact) => {setContactEmail(contact.target.value);}} defaultValue={defaultValues.contactEmail} required/>
 
                 <button type="submit" className="btn-green">
-                    Save Changes
+                    Speichern
                 </button>
             </div>
         </form>

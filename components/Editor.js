@@ -20,6 +20,15 @@ function Editor({ onChange, editorLoaded, name, value }) {
                     name={name}
                     editor={ClassicEditor}
                     data={value}
+                    config={ {
+                        toolbar: ['|', 'bold', 'italic'],
+                        heading: {
+                            options: [
+                                {model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph'}
+                            ]
+                        }
+                    }
+                    }
                     onChange={(event, editor) => {
                         const data = editor.getData();
                         // console.log({ event, editor, data })
