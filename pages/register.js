@@ -7,6 +7,7 @@ import Link from "next/link";
 import debounce from "lodash.debounce";
 import {CompanyForm} from "./login";
 import Navbar from "../components/Navbar";
+import Metatags from "../components/Metatags";
 
 export default function RegisterPage({ }) {
     const {user, company} = useContext(UserContext)
@@ -15,6 +16,7 @@ export default function RegisterPage({ }) {
       <>
       <Navbar></Navbar>
     <main>
+        <Metatags title="Jobremote.io | Register" description="Register a new Account" />
         <div className="loginWrapper">
             <h1>Registrieren</h1>
             {user && !company ? <CompanyForm/> : <RegisterWithUserAndPass/> }

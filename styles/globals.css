@@ -545,8 +545,8 @@ footer {
   border-radius: 5px;
 }
 
-.loginWrapper form input:focus {
-  box-shadow: var(--color-blue) 2px 2px 0px 1px;
+.loginWrapper h1{
+  margin-bottom: 20px;
 }
 
 .loginWrapper button {
@@ -584,6 +584,7 @@ footer {
 .loginWrapper .toggle-password span svg {
   width: 25px;
   height: 25px;
+  cursor: pointer;
 }
 
 /* Loader */
@@ -1183,12 +1184,12 @@ display: flex;
   }
 
 [data-theme='dark'] input {
-  background-color: var(--color-bg);
-  color: white;
+  background-color: #f8f8f8;
+  color: black;
 }
 
 [data-theme='dark'] ::placeholder {
-  color: white;
+  color: black;
 }
 
 [data-theme='dark'] .submenu-link svg {

@@ -1,12 +1,14 @@
 import Link from 'next/link';
 import Navbar from '../components/Navbar';
+import Metatags from "../components/Metatags";
 
 export default function Custom404() {
     return (
         <>
+            <Metatags title="Jobremote.io | 404 Fehler" description="404 Error Page"/>
         <Navbar></Navbar>
         <main>
-            <h1>404 - That page does not seem to exist...</h1>
+            <h1>404 - Diese Seite scheint nicht zu existieren!</h1>
             <iframe
                 src="https://giphy.com/embed/l2JehQ2GitHGdVG9y"
                 width="480"
@@ -15,7 +17,7 @@ export default function Custom404() {
                 allowFullScreen
             ></iframe>
             <Link href="/">
-                <button className="btn-blue">Go home</button>
+                <button className="btn-blue">Zurück</button>
             </Link>
         </main>
         </>

@@ -2,12 +2,14 @@ import {useRef, useState} from "react";
 import {auth} from "../lib/firebase";
 import toast from "react-hot-toast";
 import Navbar from "../components/Navbar";
+import Metatags from "../components/Metatags";
 
 export default function RestPasswordPage({ }) {
   return (
       <>
       <Navbar></Navbar>
       <main>
+          <Metatags title="Jobremote.io | Reset Password" description="Reset your Password" />
           <div className="loginWrapper">
               <h1>Passwort vergessen</h1>
         <ResetPassword>

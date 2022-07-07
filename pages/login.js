@@ -8,6 +8,7 @@ import * as FaIcons from 'react-icons/fa';
 
 import debounce from 'lodash.debounce';
 import * as AiIcons from "react-icons/ai";
+import Metatags from "../components/Metatags";
 
 export default function LoginPage(props) {
     const {user, company} = useContext(UserContext);
@@ -24,6 +25,7 @@ export default function LoginPage(props) {
   return (
       <>
     <main>
+        <Metatags title="Jobremote.io | Login" description="Login to your account" />
         <div className="loginWrapper">
             <Link href="/">
                 <img className="login-logo" src="https://res.cloudinary.com/casinowitch/image/upload/v1656333561/jobremote-logo_rusnvs.svg" />

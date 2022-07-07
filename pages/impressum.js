@@ -6,7 +6,7 @@ export default function Impressum() {
     return (
         <>
             <Metatags
-                title="Impressum"
+                title="Jobremote.io | Impressum"
                 description="Impressum"/>
             <Navbar/>
             <main className="impressum">
