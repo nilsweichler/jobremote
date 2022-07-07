@@ -40,7 +40,7 @@ export default function Navbar() {
       <ul>
         <li>
           <Link href="/">
-            <button className="btn-logo"><img src="https://res.cloudinary.com/casinowitch/image/upload/v1656333561/jobremote-logo_rusnvs.svg"/></button>
+            <button className="btn-logo"><img alt="Jobremote Logo" src="https://res.cloudinary.com/casinowitch/image/upload/v1656333561/jobremote-logo_rusnvs.svg"/></button>
           </Link>
         </li>
 
@@ -53,7 +53,7 @@ export default function Navbar() {
               </Link>
             </li>
             <div className="subnav">
-                <button className="subnavbtn"><img className="avatar" alt="Jobremote Logo" src={userData?.photoURL || "https://res.cloudinary.com/casinowitch/image/upload/v1656333649/hacker_tet1io.png"} /></button>
+                <button className="subnavbtn"><img className="avatar" src={userData?.photoURL || "https://res.cloudinary.com/casinowitch/image/upload/v1656333649/hacker_tet1io.png"} /></button>
               <div className="subnav-content">
                 <li>
                   <a href={`/${slugify(company.toLowerCase())}`} className="submenu-link"><img className="avatar" src={userData?.photoURL || "https://res.cloudinary.com/casinowitch/image/upload/v1656333649/hacker_tet1io.png"} /><p>{company}</p></a>
