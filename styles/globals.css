@@ -1058,6 +1058,10 @@ display: flex;
     flex-direction: column;
   }
 
+  .container {
+    padding: 10px;
+  }
+
   .navbar {
     padding: 0 3vw;
   }
@@ -1070,8 +1074,20 @@ display: flex;
     margin: 0;
   }
 
+  .withSidebar {
+    padding: 10px;
+  }
+
   .subnav-content {
     right: 0;
+  }
+
+  .settings-container form textarea {
+    width: 100%;
+  }
+
+  .settings-container form input {
+    width: 100%;
   }
 }
 

@@ -53,9 +53,7 @@ export default function Navbar() {
               </Link>
             </li>
             <div className="subnav">
-              <Link href="/admin">
                 <button className="subnavbtn"><img className="avatar" src={userData?.photoURL || "https://res.cloudinary.com/casinowitch/image/upload/v1656333649/hacker_tet1io.png"} /></button>
-              </Link>
               <div className="subnav-content">
                 <li>
                   <a href={`/${slugify(company.toLowerCase())}`} className="submenu-link"><img className="avatar" src={userData?.photoURL || "https://res.cloudinary.com/casinowitch/image/upload/v1656333649/hacker_tet1io.png"} /><p>{company}</p></a>
